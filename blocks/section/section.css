@@ -2,5 +2,10 @@
   box-sizing: border-box;
   margin: 0 auto;
   max-width: 880px;
-  width: 100%;
+  width: calc(100% - 2 * 19px);
+}
+@media (max-width: 880px) {
+  .section {
+    margin: 0 19px;
+  }
 }
