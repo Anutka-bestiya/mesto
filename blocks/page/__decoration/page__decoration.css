@@ -1,11 +1,13 @@
-.header__decoration {
+.page__decoration {
+  max-width: 880px;
   width: 100%;
   background-color: #545454;
   height: 1px;
-  margin-top: 41px;
+  margin: 41px auto 0;
 }
 @media (max-width: 880px) {
-  .header__decoration {
+  .page__decoration {
     margin-top: 31.6px;
+    width: 100vw;
   }
 }
