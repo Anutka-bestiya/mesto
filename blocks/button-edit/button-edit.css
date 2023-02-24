@@ -1,0 +1,8 @@
+.button-edit {
+  background-image: url(../../images/edit-button.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  width: 24px;
+  height: 24px;
+}
