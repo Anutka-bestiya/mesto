@@ -1,7 +1,7 @@
 .section {
   box-sizing: border-box;
   margin: 0 auto;
-  max-width: 880px;
+  max-width: 1280px;
   width: calc(100% - 2 * 19px);
 }
 @media (max-width: 880px) {
