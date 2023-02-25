@@ -1,0 +1,19 @@
+.button-close {
+  background-image: url(../../images/close-icon.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+}
+@media (max-width: 880px) {
+  .button-close {
+    width: 20px;
+    height: 20px;
+    top: -36px;
+    right: 0px;
+  }
+}

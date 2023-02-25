@@ -1,0 +1,16 @@
+.form-edit__button {
+  width: 358px;
+  height: 50px;
+  background-color: #000;
+  border-radius: 2px;
+  color: #fff;
+}
+.form-edit__button:hover {
+  opacity: 0.8;
+}
+@media (max-width: 880px) {
+  .form-edit__button {
+    width: 238px;
+    height: 46px;
+  }
+}
