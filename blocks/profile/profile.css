@@ -1,6 +1,6 @@
 .profile {
   margin-top: 40px;
-  margin-bottom: 51px;
+  margin-bottom: 50px;
   display: grid;
   grid-template-columns: 150px minmax(min-content, 100%) minmax(150px, 100%);
   grid-template-areas:
@@ -18,5 +18,6 @@
       'button-add';
     justify-items: center;
     margin-top: 42px;
+    margin-bottom: 36px;
   }
 }

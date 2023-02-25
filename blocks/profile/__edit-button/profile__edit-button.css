@@ -1,0 +1,9 @@
+.profile__edit-button {
+  margin-left: 9px;
+}
+@media (max-width: 880px) {
+  .profile__edit-button {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+}

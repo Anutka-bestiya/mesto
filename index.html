@@ -18,25 +18,27 @@
         <img src="./images/personal-image.jpg" alt="Фото профиля" class="profile__image" />
         <h1 class="profile__name text">
           Жак-Ив Кусто
-          <button class="button-edit button"></button>
+          <button class="button-edit button profile__edit-button"></button>
         </h1>
 
         <p class="profile__about text">Исследователь океана</p>
 
-        <button class="button-add button"></button>
+        <button class="button-add button profile__add-button"></button>
       </section>
       <section class="popup">
         <div class="popup_container">
-          <form class="form form-edit" action="" method="get">
+          <form class="form form-edit" action="/scripts/#" method="get">
             <button class="button-close button"></button>
+            <h2 class="title form-edit__title">Редактировать профиль</h2>
             <label class="form">
-              <h2 class="title form-edit__title">Редактировать профиль</h2>
               <input
                 class="form__input text text_size_smoll"
                 type="text"
                 name="name"
                 value="Жак-Ив Кусто"
               />
+            </label>
+            <label class="form">
               <input
                 class="form__input text text_size_smoll"
                 type="text"
@@ -54,7 +56,7 @@
           </form>
         </div>
       </section>
-      <section class="section">
+      <section class="photo-galery section">
         <ul class="elements page__list">
           <li>
             <figure class="element">

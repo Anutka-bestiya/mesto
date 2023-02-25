@@ -1,10 +1,10 @@
 .profile__about {
-  margin-top: 16px;
+  margin-top: -12px;
   color: #fff;
   grid-area: profile__about;
 }
 @media (max-width: 880px) {
   .profile__about {
-    margin-top: 14px;
+    margin-top: 7px;
   }
 }

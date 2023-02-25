@@ -1,9 +1,10 @@
 .form-edit__title {
-  margin-bottom: 54px;
+  margin-bottom: 48px;
 }
 @media (max-width: 880px) {
   .form-edit__title {
     font-size: 18px;
     line-height: 22px;
+    margin-bottom: 74px;
   }
 }
