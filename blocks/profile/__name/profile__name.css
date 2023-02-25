@@ -6,6 +6,9 @@
   line-height: 48px;
   color: #fff;
   grid-area: profile__name;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 @media (max-width: 880px) {
   .profile__name {
