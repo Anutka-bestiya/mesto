@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
+  border: none;
 }
 .button:hover {
   opacity: 0.6;

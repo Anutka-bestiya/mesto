@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
     <link href="./pages/index.css" rel="stylesheet" />
+    <script src="./scripts/index.js" defer></script>
   </head>
   <body class="page">
     <header class="header section">
@@ -18,17 +19,23 @@
         <img src="./images/personal-image.jpg" alt="Фото профиля" class="profile__image" />
         <h1 class="profile__name text">
           Жак-Ив Кусто
-          <button class="button-edit button profile__edit-button"></button>
+          <button class="button-edit button profile__edit-button">
+            <div class="sr-only">Редактировать</div>
+          </button>
         </h1>
 
         <p class="profile__about text">Исследователь океана</p>
 
-        <button class="button-add button profile__add-button"></button>
+        <button class="button-add button profile__add-button">
+          <div class="sr-only">Добавить</div>
+        </button>
       </section>
       <section class="popup">
         <div class="popup_container">
           <form class="form form-edit" action="/scripts/#" method="get">
-            <button class="button-close button"></button>
+            <button class="button-close button">
+              <div class="sr-only">Закрыть</div>
+            </button>
             <h2 class="title form-edit__title">Редактировать профиль</h2>
             <label class="form">
               <input
@@ -52,6 +59,7 @@
               value="Отправить форму сейчас"
             >
               Сохранить
+              <div class="sr-only">Сохранить</div>
             </button>
           </form>
         </div>
@@ -63,7 +71,9 @@
               <img class="element__image" src="./images/chusovaya.jpg" alt="Вид на реку Чусовая" />
               <figcaption class="element__caption">
                 <p class="title element__title">P. Чусовая</p>
-                <div class="element__button-like"></div>
+                <button class="button button-like">
+                  <div class="sr-only">Поставить лайк</div>
+                </button>
               </figcaption>
             </figure>
           </li>
@@ -76,7 +86,9 @@
               />
               <figcaption class="element__caption">
                 <p class="title element__title">Екатеринбург</p>
-                <div class="element__button-like"></div>
+                <button class="button button-like">
+                  <div class="sr-only">Поставить лайк</div>
+                </button>
               </figcaption>
             </figure>
           </li>
@@ -85,7 +97,9 @@
               <img class="element__image" src="./images/vladivostok.jpg" alt="Вид на Владивосток" />
               <figcaption class="element__caption">
                 <p class="title element__title">Владивосток</p>
-                <div class="element__button-like"></div>
+                <button class="button button-like">
+                  <div class="sr-only">Поставить лайк</div>
+                </button>
               </figcaption>
             </figure>
           </li>
@@ -98,7 +112,9 @@
               />
               <figcaption class="element__caption">
                 <p class="title element__title">Адлер</p>
-                <div class="element__button-like"></div>
+                <button class="button button-like">
+                  <div class="sr-only">Поставить лайк</div>
+                </button>
               </figcaption>
             </figure>
           </li>
@@ -107,7 +123,9 @@
               <img class="element__image" src="./images/khosta.jpg" alt="Вид на город Хоста" />
               <figcaption class="element__caption">
                 <p class="title element__title">Хоста</p>
-                <div class="element__button-like"></div>
+                <button class="button button-like">
+                  <div class="sr-only">Поставить лайк</div>
+                </button>
               </figcaption>
             </figure>
           </li>
@@ -120,7 +138,9 @@
               />
               <figcaption class="element__caption">
                 <p class="title element__title">Санкт-Петербург</p>
-                <div class="element__button-like"></div>
+                <button class="button button-like">
+                  <div class="sr-only">Поставить лайк</div>
+                </button>
               </figcaption>
             </figure>
           </li>
