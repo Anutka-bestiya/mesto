@@ -17,23 +17,19 @@
       <div class="page__decoration"></div>
       <section class="profile section">
         <img src="./images/personal-image.jpg" alt="Фото профиля" class="profile__image" />
-        <h1 class="profile__name text">
-          Жак-Ив Кусто
-          <button class="button-edit button profile__edit-button">
-            <div class="sr-only">Редактировать</div>
-          </button>
-        </h1>
-
-        <p class="profile__about text">Исследователь океана</p>
-
+        <h1 class="profile__name text user__name"></h1>
+        <button class="button-edit button profile__edit-button">
+          <div class="sr-only">Редактировать</div>
+        </button>
+        <p class="profile__about text user__about"></p>
         <button class="button-add button profile__add-button">
           <div class="sr-only">Добавить</div>
         </button>
       </section>
-      <section class="popup">
+      <section class="popup edit-popup">
         <div class="popup_container">
           <form class="form form-edit" action="/scripts/#" method="get">
-            <button class="button-close button">
+            <button class="button-close button profile__close-button">
               <div class="sr-only">Закрыть</div>
             </button>
             <h2 class="title form-edit__title">Редактировать профиль</h2>

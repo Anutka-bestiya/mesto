@@ -2,7 +2,7 @@
   padding: 34px 36px 37px;
   position: relative;
 }
-@media (max-width: 880px) {
+@media (max-width: 879px) {
   .form-edit {
     padding: 25px 22px;
   }

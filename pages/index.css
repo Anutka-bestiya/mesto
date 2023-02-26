@@ -11,7 +11,6 @@
 /*text-blocks*/
 @import url(../blocks/sr-only/sr-only.css);
 @import url(../blocks/link/link.css);
-@import url(../blocks/link/_theme/link_theme_dark);
 @import url(../blocks/text/text.css);
 @import url(../blocks/text/_size/text_size_smoll.css);
 @import url(../blocks/title/title.css);

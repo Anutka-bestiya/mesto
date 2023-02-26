@@ -9,7 +9,7 @@
   top: -40px;
   right: -40px;
 }
-@media (max-width: 880px) {
+@media (max-width: 879px) {
   .button-close {
     background-image: url(../../images/close-icon-mobule.png);
     width: 20px;

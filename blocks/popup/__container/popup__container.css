@@ -9,7 +9,7 @@
   margin-top: 195px;
   z-index: 2;
 }
-@media (max-width: 880px) {
+@media (max-width: 879px) {
   .popup_container {
     margin-top: 123px;
     max-width: 282px;

@@ -2,7 +2,7 @@
   min-height: 74px;
   margin-top: 45px;
 }
-@media (max-width: 880px) {
+@media (max-width: 879px) {
   .header {
     min-height: 56px;
     margin-top: 27px;

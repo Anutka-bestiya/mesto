@@ -11,7 +11,7 @@
   border-radius: 2px;
   justify-self: end;
 }
-@media (max-width: 880px) {
+@media (max-width: 879px) {
   .button-add {
     background-size: 16px;
     width: 282px;

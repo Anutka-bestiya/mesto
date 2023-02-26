@@ -6,16 +6,17 @@
   line-height: 48px;
   color: #fff;
   grid-area: profile__name;
+  max-width: 532px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
-@media (max-width: 880px) {
+@media (max-width: 879px) {
   .profile__name {
     margin-top: 26px;
     font-size: 27px;
     line-height: 33px;
-    justify-self: center;
-    padding-left: 30px;
+    justify-self: end;
+    padding-left: 26px;
   }
 }
