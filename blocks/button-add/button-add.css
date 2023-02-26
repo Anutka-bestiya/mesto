@@ -14,7 +14,8 @@
 @media (max-width: 879px) {
   .button-add {
     background-size: 16px;
-    width: 282px;
+    max-width: 282px;
+    width: 100%;
     justify-self: center;
   }
 }

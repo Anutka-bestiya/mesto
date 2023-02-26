@@ -1,4 +1,4 @@
-.popup_container {
+.popup__container {
   margin: 0 auto;
   background-color: #fff;
   max-width: 430px;
@@ -10,7 +10,7 @@
   z-index: 2;
 }
 @media (max-width: 879px) {
-  .popup_container {
+  .popup__container {
     margin-top: 123px;
     max-width: 282px;
     max-height: 322px;

@@ -10,7 +10,7 @@ if (!editProfileOpenButton) {
   throw new Error('No editProfileOpenButton');
 }
 //находим кнопку закрыть попап
-const editProfileCloseButton = document.querySelector('.profile__close-button');
+const editProfileCloseButton = document.querySelector('.form-edit__close-button');
 if (!editProfileCloseButton) {
   throw new Error('No editProfileCloseButton');
 }
@@ -30,9 +30,9 @@ function closeEditPopup() {
 
 let formElement = document.querySelector('.form-edit');
 console.log(formElement);
-let nameInput = formElement.querySelector('.form-user__name');
+let nameInput = formElement.querySelector('.form-user-name');
 console.log(nameInput);
-let aboutInput = formElement.querySelector('.form-user__about');
+let aboutInput = formElement.querySelector('.form-user-about');
 console.log(aboutInput);
 if (!nameInput) {
   throw new Error('No nameInput');
@@ -45,8 +45,8 @@ console.log(nameInput.value);
 aboutInput.getAttribute('value');
 console.log(aboutInput.value);
 
-let userNameElement = document.querySelector('.user__name');
-let userAboutElement = document.querySelector('.user__about');
+let userNameElement = document.querySelector('.user-name');
+let userAboutElement = document.querySelector('.user-about');
 if (!userNameElement) {
   throw new Error('No userNameElement');
 }
