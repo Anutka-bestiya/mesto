@@ -1,4 +1,3 @@
-console.log('Hello');
 //находим кнопку форму радактирования данных=попап
 const editPopup = document.querySelector('.edit-popup');
 if (!editPopup) {

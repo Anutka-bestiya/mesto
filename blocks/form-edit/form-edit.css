@@ -1,4 +1,7 @@
 .form-edit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 34px 36px 37px;
   position: relative;
 }

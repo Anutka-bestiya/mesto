@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
     <link href="./pages/index.css" rel="stylesheet">
-    <script src="./scripts/index.js" defer></script>
   </head>
   <body class="page">
     <header class="header section">
@@ -14,49 +13,16 @@
       ></a>
     </header>
     <main>
-      <div class="page__decoration"></div>
       <section class="profile section">
         <img src="./images/personal-image.jpg" alt="Фото профиля" class="profile__image">
         <h1 class="profile__name text user-name">Имя</h1>
         <button class="button-edit button profile__edit-button">
-          <!-- <div class="sr-only">Редактировать</div> -->
+          <div class="sr-only">Редактировать</div>
         </button>
         <p class="profile__about text user-about"></p>
         <button class="button-add button profile__add-button">
-          <!-- <div class="sr-only">Добавить</div> -->
+          <div class="sr-only">Добавить</div>
         </button>
-      </section>
-      <section class="popup edit-popup">
-        <div class="popup__container">
-          <form class="form form-edit" action="/scripts/#" method="get">
-            <button class="button-close button form-edit__close-button">
-              <!-- <div class="sr-only">Закрыть</div> -->
-            </button>
-            <h2 class="title form-edit__title">Редактировать профиль</h2>
-            <label class="form">
-              <input
-                class="form__input text text_size_smoll form-user-name"
-                type="text"
-                name="name"
-                value="Жак-Ив Кусто">
-            </label>
-            <label class="form">
-              <input
-                class="form__input text text_size_smoll form-user-about"
-                type="text"
-                name="about"
-                value="Исследователь океана">
-            </label>
-            <button
-              class="button form-edit__button text"
-              type="submit"
-              value="Отправить форму сейчас"
-            >
-              Сохранить
-              <!-- <div class="sr-only">Сохранить</div> -->
-            </button>
-          </form>
-        </div>
       </section>
       <section class="photo-galery section" aria-label="Галерея">
         <ul class="elements page__list">
@@ -66,7 +32,7 @@
               <figcaption class="element__caption">
                 <p class="title element__title">P. Чусовая</p>
                 <button class="button button-like">
-                  <!-- <div class="sr-only">Поставить лайк</div> -->
+                  <div class="sr-only">Поставить лайк</div>
                 </button>
               </figcaption>
             </figure>
@@ -80,7 +46,7 @@
               <figcaption class="element__caption">
                 <p class="title element__title">Екатеринбург</p>
                 <button class="button button-like">
-                  <!-- <div class="sr-only">Поставить лайк</div> -->
+                  <div class="sr-only">Поставить лайк</div>
                 </button>
               </figcaption>
             </figure>
@@ -91,7 +57,7 @@
               <figcaption class="element__caption">
                 <p class="title element__title">Владивосток</p>
                 <button class="button button-like">
-                  <!-- <div class="sr-only">Поставить лайк</div> -->
+                  <div class="sr-only">Поставить лайк</div>
                 </button>
               </figcaption>
             </figure>
@@ -105,7 +71,7 @@
               <figcaption class="element__caption">
                 <p class="title element__title">Адлер</p>
                 <button class="button button-like">
-                  <!-- <div class="sr-only">Поставить лайк</div> -->
+                  <div class="sr-only">Поставить лайк</div>
                 </button>
               </figcaption>
             </figure>
@@ -116,7 +82,7 @@
               <figcaption class="element__caption">
                 <p class="title element__title">Хоста</p>
                 <button class="button button-like">
-                  <!-- <div class="sr-only">Поставить лайк</div> -->
+                  <div class="sr-only">Поставить лайк</div>
                 </button>
               </figcaption>
             </figure>
@@ -130,16 +96,48 @@
               <figcaption class="element__caption">
                 <p class="title element__title">Санкт-Петербург</p>
                 <button class="button button-like">
-                  <!-- <div class="sr-only">Поставить лайк</div> -->
+                  <div class="sr-only">Поставить лайк</div>
                 </button>
               </figcaption>
             </figure>
           </li>
         </ul>
       </section>
+      <section class="popup edit-popup">
+        <div class="popup__container">
+          <form class="form-edit">
+            <button class="button-close button form-edit__close-button">
+              <div class="sr-only">Закрыть</div>
+            </button>
+            <h2 class="title form-edit__title">Редактировать профиль</h2>
+            <label class="form">
+              <input
+                class="form__input text text_size_small form-user-name"
+                type="text"
+                name="name"
+                value="Жак-Ив Кусто">
+            </label>
+            <label class="form">
+              <input
+                class="form__input text text_size_small form-user-about"
+                type="text"
+                name="about"
+                value="Исследователь океана">
+            </label>
+            <button
+              class="button form-edit__button form-edit__text-button text"
+              type="submit"
+              value="Отправить форму сейчас">
+              Сохранить
+              <div class="sr-only">Сохранить</div>
+            </button>
+          </form>
+        </div>
+      </section>
     </main>
     <footer class="footer section">
       <p class="text footer__copyright">© 2023. Anutka_bestiya</p>
     </footer>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

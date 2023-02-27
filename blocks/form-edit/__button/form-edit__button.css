@@ -1,6 +1,5 @@
 .form-edit__button {
   width: 358px;
-  height: 50px;
   background-color: #000;
   border-radius: 2px;
   color: #fff;
@@ -12,6 +11,5 @@
 @media (max-width: 879px) {
   .form-edit__button {
     width: 238px;
-    height: 46px;
   }
 }

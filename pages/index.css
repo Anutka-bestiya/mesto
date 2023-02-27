@@ -5,14 +5,13 @@
 /*blocks*/
 @import url(../blocks/page/page.css);
 @import url(../blocks/page/__list/page__list.css);
-@import url(../blocks/page/__decoration/page__decoration.css);
 @import url(../blocks/section/section.css);
 @import url(../blocks/logo/logo.css);
 /*text-blocks*/
 @import url(../blocks/sr-only/sr-only.css);
 @import url(../blocks/link/link.css);
 @import url(../blocks/text/text.css);
-@import url(../blocks/text/_size/text_size_smoll.css);
+@import url(../blocks/text/_size/text_size_small.css);
 @import url(../blocks/title/title.css);
 /*button*/
 @import url(../blocks/button/button.css);
@@ -42,6 +41,7 @@
 @import url(../blocks/form-edit/form-edit.css);
 @import url(../blocks/form-edit/__title/form-edit__title.css);
 @import url(../blocks/form-edit/__button/form-edit__button.css);
+@import url(../blocks/form-edit/__text-button/form-edit__text-button.css);
 /*photo-galery*/
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
