@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-    <link href="./pages/index.css" rel="stylesheet">
+    <link href="./pages/index.css" rel="stylesheet" />
   </head>
   <body class="page">
     <header class="header section">
       <a class="link" href="#"
         ><img src="./images/logo.svg" alt="Логотип: Место.Россия" class="logo header__logo"
-      ></a>
+      /></a>
     </header>
     <main>
       <section class="profile section">
-        <img src="./images/personal-image.jpg" alt="Фото профиля" class="profile__image">
+        <img src="./images/personal-image.jpg" alt="Фото профиля" class="profile__image" />
         <h1 class="profile__name text user-name">Имя</h1>
         <button class="button-edit button profile__edit-button">
           <div class="sr-only">Редактировать</div>
@@ -25,83 +25,7 @@
         </button>
       </section>
       <section class="photo-galery section" aria-label="Галерея">
-        <ul class="elements page__list">
-          <li>
-            <figure class="element">
-              <img class="element__image" src="./images/chusovaya.jpg" alt="Вид на реку Чусовая">
-              <figcaption class="element__caption">
-                <p class="title element__title">P. Чусовая</p>
-                <button class="button button-like">
-                  <div class="sr-only">Поставить лайк</div>
-                </button>
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure class="element">
-              <img
-                class="element__image"
-                src="./images/ekaterinbourg.jpg"
-                alt="Вид на Екатеринбург">
-              <figcaption class="element__caption">
-                <p class="title element__title">Екатеринбург</p>
-                <button class="button button-like">
-                  <div class="sr-only">Поставить лайк</div>
-                </button>
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure class="element">
-              <img class="element__image" src="./images/vladivostok.jpg" alt="Вид на Владивосток">
-              <figcaption class="element__caption">
-                <p class="title element__title">Владивосток</p>
-                <button class="button button-like">
-                  <div class="sr-only">Поставить лайк</div>
-                </button>
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure class="element">
-              <img
-                class="element__image"
-                src="./images/adler.jpg"
-                alt="Волнорез на Черном море в Адлере">
-              <figcaption class="element__caption">
-                <p class="title element__title">Адлер</p>
-                <button class="button button-like">
-                  <div class="sr-only">Поставить лайк</div>
-                </button>
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure class="element">
-              <img class="element__image" src="./images/khosta.jpg" alt="Вид на город Хоста">
-              <figcaption class="element__caption">
-                <p class="title element__title">Хоста</p>
-                <button class="button button-like">
-                  <div class="sr-only">Поставить лайк</div>
-                </button>
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure class="element">
-              <img
-                class="element__image"
-                src="./images/saint-petersburg.jpg"
-                alt="Метро в Санкт-Петербурге">
-              <figcaption class="element__caption">
-                <p class="title element__title">Санкт-Петербург</p>
-                <button class="button button-like">
-                  <div class="sr-only">Поставить лайк</div>
-                </button>
-              </figcaption>
-            </figure>
-          </li>
-        </ul>
+        <ul class="elements page__list"></ul>
       </section>
       <section class="popup edit-popup">
         <div class="popup__container">
@@ -115,19 +39,22 @@
                 class="form__input text text_size_small form-user-name"
                 type="text"
                 name="name"
-                value="Жак-Ив Кусто">
+                value="Жак-Ив Кусто"
+              />
             </label>
             <label class="form">
               <input
                 class="form__input text text_size_small form-user-about"
                 type="text"
                 name="about"
-                value="Исследователь океана">
+                value="Исследователь океана"
+              />
             </label>
             <button
               class="button form-edit__button form-edit__text-button text"
               type="submit"
-              value="Отправить форму сейчас">
+              value="Отправить форму сейчас"
+            >
               Сохранить
               <div class="sr-only">Сохранить</div>
             </button>
@@ -138,6 +65,19 @@
     <footer class="footer section">
       <p class="text footer__copyright">© 2023 Anutka_bestiya</p>
     </footer>
+    <template id="cardTemplate">
+      <li>
+        <figure class="element">
+          <img class="element__image" src="./images/chusovaya.jpg" alt="Вид на реку Чусовая" />
+          <figcaption class="element__caption">
+            <p class="title element__title">P. Чусовая</p>
+            <button class="button button-like">
+              <div class="sr-only">Поставить лайк</div>
+            </button>
+          </figcaption>
+        </figure>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
