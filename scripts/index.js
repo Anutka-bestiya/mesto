@@ -1,3 +1,4 @@
+//Попап Редактировать профиль
 //находим кнопку форму радактирования данных=попап
 const editPopup = document.querySelector('.edit-popup');
 if (!editPopup) {
@@ -15,18 +16,20 @@ if (!editProfileCloseButton) {
 }
 //события клика на открытие/закрытие попапа + функции
 editProfileOpenButton.addEventListener('click', function () {
-  openEditPopup(editPopup);
+  openPopup(editPopup);
 });
 editProfileCloseButton.addEventListener('click', function () {
-  closeEditPopup(editPopup);
+  closePopup(editPopup);
 });
-function openEditPopup() {
-  editPopup.classList.add('popup_opened');
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  // const popupOpen = document.querySelector('.popup');
+  popup.style.transition = 'visibility 0s, opacity 2s ease-in-out';
 }
-function closeEditPopup() {
-  editPopup.classList.remove('popup_opened');
-  const popup = document.querySelector('.popup');
-  popup.style.transition = 'visibility 0s 3s, opacity 3s ease-in-out';
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  // const popupClose = document.querySelector('.popup');
+  popup.style.transition = 'visibility 0s 2s, opacity 2s ease-in-out';
 }
 //Изменение данных профиля через форму в попап
 const formElement = document.querySelector('.form-edit');
@@ -40,7 +43,6 @@ if (!aboutInput) {
 }
 nameInput.getAttribute('value');
 aboutInput.getAttribute('value');
-
 const userNameElement = document.querySelector('.user-name');
 const userAboutElement = document.querySelector('.user-about');
 if (!userNameElement) {
@@ -59,8 +61,32 @@ function handleFormSubmit(event) {
   userAbout = aboutInput.value;
   userNameElement.textContent = userName;
   userAboutElement.textContent = userAbout;
-  closeEditPopup(editPopup);
+  closePopup(editPopup);
 }
+//Попап Добавить Карт
+const addCartPopup = document.querySelector('.add-card-popup');
+if (!addCartPopup) {
+  throw new Error('No addCartPopupp');
+}
+//находим кнопку добавить карт попап
+const addCartOpenButton = document.querySelector('.profile__add-button');
+if (!addCartOpenButton) {
+  throw new Error('No addCartOpenButton');
+}
+//находим кнопку закрыть попап
+const addCartCloseButton = document.querySelector('.add-card__close-button');
+if (!addCartCloseButton) {
+  throw new Error('No addCartCloseButton');
+}
+//события клика на открытие/закрытие попапа + функции
+addCartOpenButton.addEventListener('click', function () {
+  openPopup(addCartPopup);
+});
+addCartCloseButton.addEventListener('click', function (event) {
+  event.preventDefault();
+  closePopup(addCartPopup);
+});
+
 //массив карт
 const initialCards = [
   {
@@ -99,7 +125,9 @@ const createCard = card => {
   cardImage.setAttribute('alt', `Фотография ${card.name}`);
   const elementDeleteButton = initialCard.querySelector('.button-card-delete');
   elementDeleteButton.addEventListener('click', elementDeleteClick);
-  photoGaleryElements.append(initialCard);
+  const likeButton = initialCard.querySelector('.button-like');
+  likeButton.addEventListener('click', likeButtonClick);
+  photoGaleryElements.prepend(initialCard);
 };
 initialCards.forEach(createCard);
 //удаление карточки
@@ -108,3 +136,29 @@ function elementDeleteClick(event) {
   const card = button.closest('.elements__list');
   card.remove();
 }
+//кнопка поставить лайк
+function likeButtonClick(event) {
+  const button = event.target;
+  button.classList.toggle('button-like_active');
+}
+//Добавление Карт через форму в попап
+const formAddCart = document.querySelector('.add-card');
+const buttonFormAddCart = formAddCart.querySelector('.add-card__button');
+buttonFormAddCart.addEventListener('click', addCartSubmit);
+function addCartSubmit(event) {
+  event.preventDefault();
+  const form = event.target;
+  const newName = formAddCart.querySelector('.form-add-card-name').value;
+  if (!newName) {
+    throw new Error('No newNameAddCartInput');
+  }
+  const newLink = formAddCart.querySelector('.form-add-card-link').value;
+  if (!newLink) {
+    throw new Error('No newLinkAddCartInput');
+  }
+  const newCard = { name: newName, link: newLink };
+  createCard(newCard);
+  closePopup(addCartPopup);
+  formAddCart.reset();
+}
+//кнопка поставить лайк

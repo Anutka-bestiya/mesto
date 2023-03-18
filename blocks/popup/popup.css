@@ -7,5 +7,4 @@
   height: 100vh;
   visibility: hidden;
   opacity: 0;
-  /* transition: visibility 0s 3s, opacity 3s ease-in-out; */
 }
