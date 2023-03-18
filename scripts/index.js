@@ -25,6 +25,8 @@ function openEditPopup() {
 }
 function closeEditPopup() {
   editPopup.classList.remove('popup_opened');
+  const popup = document.querySelector('.popup');
+  popup.style.transition = 'visibility 0s 3s, opacity 3s ease-in-out';
 }
 //Изменение данных профиля через форму в попап
 const formElement = document.querySelector('.form-edit');
@@ -95,8 +97,14 @@ const createCard = card => {
   const cardImage = initialCard.querySelector('.element__image');
   cardImage.setAttribute('src', card.link);
   cardImage.setAttribute('alt', `Фотография ${card.name}`);
-  // const elementDeleteButton = initialCard.querySelector('.button-delete');
-  // elementDeleteButton.addEventListener('click', elementDeleteClick);
+  const elementDeleteButton = initialCard.querySelector('.button-card-delete');
+  elementDeleteButton.addEventListener('click', elementDeleteClick);
   photoGaleryElements.append(initialCard);
 };
 initialCards.forEach(createCard);
+//удаление карточки
+function elementDeleteClick(event) {
+  const button = event.target;
+  const card = button.closest('.elements__list');
+  card.remove();
+}
