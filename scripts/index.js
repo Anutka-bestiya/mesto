@@ -116,6 +116,10 @@ const initialCards = [
 ];
 //Создание карт из массива
 const photoGaleryElements = document.querySelector('.elements');
+const bigImage = document.querySelector('.image-popup');
+if (!bigImage) {
+  throw new Error('No bigImage');
+}
 const createCard = card => {
   const initialCard = document.querySelector('#cardTemplate').content.cloneNode(true);
   const cardName = initialCard.querySelector('.element__title');
@@ -128,6 +132,15 @@ const createCard = card => {
   const likeButton = initialCard.querySelector('.button-like');
   likeButton.addEventListener('click', likeButtonClick);
   photoGaleryElements.prepend(initialCard);
+
+  cardImage.addEventListener('click', function () {
+    openPopup(bigImage);
+    const bigImagePopupOpen = bigImage.querySelector('.image-popup__image');
+    const bigNamePopupOpen = bigImage.querySelector('.image-popup__title');
+    bigImagePopupOpen.setAttribute('src', card.link);
+    bigImagePopupOpen.setAttribute('alt', `Фотография ${card.name}`);
+    bigNamePopupOpen.textContent = card.name;
+  });
 };
 initialCards.forEach(createCard);
 //удаление карточки
@@ -161,4 +174,11 @@ function addCartSubmit(event) {
   closePopup(addCartPopup);
   formAddCart.reset();
 }
-//кнопка поставить лайк
+//Закрыть карточку изображения
+const bigImageCloseBotton = document.querySelector('.image-popup__close-button');
+if (!bigImageCloseBotton) {
+  throw new Error('No bigImageCloseBotton');
+}
+bigImageCloseBotton.addEventListener('click', function () {
+  closePopup(bigImage);
+});
