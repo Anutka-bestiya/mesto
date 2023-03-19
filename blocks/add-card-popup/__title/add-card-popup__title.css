@@ -1,8 +1,8 @@
-.add-card__title {
+.add-card-popup__title {
   margin-bottom: 48px;
 }
 @media (max-width: 879px) {
-  .add-card__title {
+  .add-card-popup__title {
     font-size: 18px;
     line-height: 22px;
     margin-bottom: 74px;

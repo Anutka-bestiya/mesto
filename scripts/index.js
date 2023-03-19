@@ -35,7 +35,7 @@ function closePopup(popup) {
 //Попап Редактировать профиль
 const editPopup = document.querySelector('.edit-popup');
 const buttonEditProfileOpen = document.querySelector('.profile__edit-button');
-const buttonEditProfileClose = document.querySelector('.form-edit__close-button');
+const buttonEditProfileClose = document.querySelector('.edit-popup__close-button');
 const formEditPopup = document.querySelector('.form-edit');
 const inputNameEditPopup = formEditPopup.querySelector('.form-user-name');
 const inputAboutEditPopup = formEditPopup.querySelector('.form-user-about');
@@ -68,7 +68,7 @@ function handleFormSubmit(event) {
 //Попап Добавить Карт
 const addCartPopup = document.querySelector('.add-card-popup');
 const buttonAddCartOpen = document.querySelector('.profile__add-button');
-const buttonAddCartClose = document.querySelector('.add-card__close-button');
+const buttonAddCartClose = document.querySelector('.add-card-popup__close-button');
 //события клика на открытие/закрытие попапа
 buttonAddCartOpen.addEventListener('click', function () {
   openPopup(addCartPopup);

@@ -40,12 +40,12 @@
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form-edit/form-edit.css);
-@import url(../blocks/form-edit/__title/form-edit__title.css);
+@import url(../blocks/edit-popup/__title/edit-popup__title.css);
 @import url(../blocks/form-edit/__button/form-edit__button.css);
 @import url(../blocks/form-edit/__text-button/form-edit__text-button.css);
 /*add-card-form*/
 @import url(../blocks/add-card/add-card.css);
-@import url(../blocks/add-card/__title/add-card__title.css);
+@import url(../blocks/add-card-popup/__title/add-card-popup__title.css);
 @import url(../blocks/add-card/__button/add-card__button.css);
 @import url(../blocks/add-card/__text-button/add-card__text-button.css);
 @import url(../blocks/add-card/__text/add-card__text.css);
