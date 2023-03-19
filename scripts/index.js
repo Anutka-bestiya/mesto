@@ -85,6 +85,7 @@ addCartOpenButton.addEventListener('click', function () {
 addCartCloseButton.addEventListener('click', function (event) {
   event.preventDefault();
   closePopup(addCartPopup);
+  formAddCart.reset();
 });
 
 //массив карт
