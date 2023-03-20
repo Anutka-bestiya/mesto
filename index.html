@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
-    <link href="./pages/index.css" rel="stylesheet" />
+    <link href="./pages/index.css" rel="stylesheet">
   </head>
   <body class="page">
     <header class="header section">
       <a class="link" href="#"
-        ><img src="./images/logo.svg" alt="Логотип: Место.Россия" class="logo header__logo"
-      /></a>
+        ><img src="./images/logo.svg" alt="Логотип: Место.Россия" class="logo header__logo"></a>
     </header>
     <main>
       <section class="profile section">
-        <img src="./images/personal-image.jpg" alt="Фото профиля" class="profile__image" />
+        <img src="./images/personal-image.jpg" alt="Фото профиля" class="profile__image">
         <h1 class="profile__name text user-name">Жак-Ив Кусто</h1>
         <button class="button-edit button profile__edit-button">
           <div class="sr-only">Редактировать</div>
@@ -38,14 +37,12 @@
               class="form__input text text_size_small form-user-name"
               type="text"
               name="name"
-              placeholder="Имя"
-            />
+              placeholder="Имя">
             <input
               class="form__input text text_size_small form-user-about"
               type="text"
               name="about"
-              placeholder="О себе"
-            />
+              placeholder="О себе">
             <button
               class="button form-edit__button form-edit__text-button text"
               type="submit"
@@ -69,20 +66,17 @@
               type="text"
               name="name"
               value=""
-              placeholder="Название"
-            />
+              placeholder="Название">
             <input
               class="form__input text text_size_small add-card__text form-add-card-link"
               type="text"
               name="link"
               value=""
-              placeholder="Ссылка на картинку"
-            />
+              placeholder="Ссылка на картинку">
             <button
               class="button add-card__button add-card__text-button text"
               type="submit"
-              value="Отправить форму сейчас"
-            >
+              value="Отправить форму сейчас">
               Создать
               <div class="sr-only">Создать</div>
             </button>
@@ -94,7 +88,7 @@
           <button class="button-close button image-popup__close-button">
             <div class="sr-only">Закрыть</div>
           </button>
-          <img class="image-popup__image" src="#" alt="Фотография" />
+          <img class="image-popup__image" src="#" alt="Фотография">
           <figcaption class="image-popup__element">
             <p class="image-popup__title"></p>
           </figcaption>
@@ -108,7 +102,7 @@
       <li class="elements__list">
         <figure class="element">
           <button class="button button-card-delete"></button>
-          <img class="element__image" src="#" alt="Фотография" />
+          <img class="element__image" src="#" alt="Фотография">
           <figcaption class="element__caption">
             <p class="title element__title"></p>
             <button class="button button-like">
@@ -118,7 +112,6 @@
         </figure>
       </li>
     </template>
-    <!-- <script src="./scripts/cards.js"></script> -->
     <script src="./scripts/index.js"></script>
   </body>
 </html>
