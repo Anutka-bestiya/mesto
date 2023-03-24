@@ -29,29 +29,37 @@
       </section>
       <section class="popup edit-popup">
         <div class="popup__container">
-          <form class="form-edit">
+          <form class="popup__form form-edit">
             <button class="button-close button form-edit__close-button">
               <div class="sr-only">Закрыть</div>
             </button>
             <h2 class="title form-edit__title">Редактировать профиль</h2>
             <label class="form">
               <input
-                class="form__input text text_size_small form-user-name"
+                class="popup__input form__input text text_size_small form-user-name"
                 type="text"
                 name="name"
                 value="Жак-Ив Кусто"
+                required
+                minlength="2"
+                maxlength="40"
               />
+              <span class="popup__error"></span>
             </label>
             <label class="form">
               <input
-                class="form__input text text_size_small form-user-about"
+                class="popup__input form__input text text_size_small form-user-about"
                 type="text"
                 name="about"
                 value="Исследователь океана"
+                required
+                minlength="2"
+                maxlength="200"
               />
+              <span class="popup__error"></span>
             </label>
             <button
-              class="button form-edit__button form-edit__text-button text"
+              class="popup__button button form-edit__button form-edit__text-button text"
               type="submit"
               value="Отправить форму сейчас"
             >
@@ -63,31 +71,37 @@
       </section>
       <section class="popup add-card-popup">
         <div class="popup__container add-card__container">
-          <form class="add-card">
+          <form class="popup__form add-card">
             <button class="button-close button add-card__close-button">
               <div class="sr-only">Закрыть</div>
             </button>
             <h2 class="title add-card__title">Новое место</h2>
             <label class="form">
               <input
-                class="form__input text text_size_small add-card__text form-add-card-name"
+                class="popup__input form__input text text_size_small add-card__text form-add-card-name"
                 type="text"
-                name="name"
+                name="name-card"
                 value=""
+                required
+                minlength="2"
+                maxlength="30"
                 placeholder="Название"
               />
+              <span class="popup__error"></span>
             </label>
             <label class="form">
               <input
-                class="form__input text text_size_small add-card__text form-add-card-link"
-                type="text"
+                class="popup__input form__input text text_size_small add-card__text form-add-card-link"
+                type="url"
                 name="link"
                 value=""
-                placeholder="Ссылка на картинку"
+                required
+                placeholder="https://site.com"
               />
+              <span class="popup__error"></span>
             </label>
             <button
-              class="button add-card__button add-card__text-button text"
+              class="popup__button button add-card__button add-card__text-button text"
               type="submit"
               value="Отправить форму сейчас"
             >
@@ -126,6 +140,8 @@
         </figure>
       </li>
     </template>
+    <script src="./scripts/cards.js"></script>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

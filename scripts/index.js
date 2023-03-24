@@ -87,33 +87,6 @@ addCartCloseButton.addEventListener('click', function (event) {
   closePopup(addCartPopup);
 });
 
-//массив карт
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 //Создание карт из массива
 const photoGaleryElements = document.querySelector('.elements');
 const bigImage = document.querySelector('.image-popup');
@@ -162,13 +135,13 @@ function addCartSubmit(event) {
   event.preventDefault();
   const form = event.target;
   const newName = formAddCart.querySelector('.form-add-card-name').value;
-  if (!newName) {
-    throw new Error('No newNameAddCartInput');
-  }
+  // if (!newName) {
+  //   throw new Error('No newNameAddCartInput');
+  // }
   const newLink = formAddCart.querySelector('.form-add-card-link').value;
-  if (!newLink) {
-    throw new Error('No newLinkAddCartInput');
-  }
+  // if (!newLink) {
+  //   throw new Error('No newLinkAddCartInput');
+  // }
   const newCard = { name: newName, link: newLink };
   createCard(newCard);
   closePopup(addCartPopup);
