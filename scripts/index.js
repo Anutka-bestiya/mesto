@@ -143,5 +143,4 @@ function addCartSubmit(event) {
   const newCardCreate = createCard(newCard);
   renderCard(newCardCreate);
   closePopup(popupAddCart);
-  formAddCart.reset();
 }
