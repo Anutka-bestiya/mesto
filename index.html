@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
-    <link href="./pages/index.css" rel="stylesheet" />
+    <link href="./pages/index.css" rel="stylesheet">
   </head>
   <body class="page">
     <header class="header section">
-      <a class="link" href="#"
-        ><img src="./images/logo.svg" alt="Логотип: Место.Россия" class="logo header__logo"
-      /></a>
+      <a class="link" href="#">
+        <img src="./images/logo.svg" alt="Логотип: Место.Россия" class="logo header__logo"></a>
     </header>
     <main>
       <section class="profile section">
-        <img src="./images/personal-image.jpg" alt="Фото профиля" class="profile__image" />
+        <img src="./images/personal-image.jpg" alt="Фото профиля" class="profile__image">
         <h1 class="profile__name text user-name">Жак-Ив Кусто</h1>
         <button class="button-edit button profile__edit-button">
           <div class="sr-only">Редактировать</div>
@@ -28,7 +27,7 @@
         <ul class="elements page__list"></ul>
       </section>
       <section class="popup edit-popup">
-        <div class="popup__container">
+        <div class="popup__container popup__inactiv-close">
           <button class="button-close button edit-popup__close-button">
             <div class="sr-only">Закрыть</div>
           </button>
@@ -38,31 +37,26 @@
               class="popup__input form__input text text_size_small form-user-name"
               type="text"
               name="name"
-              value="Жак-Ив Кусто"
+              value=""
               required
               minlength="2"
               maxlength="40"
-              placeholder="Имя"
-            />
+              placeholder="Имя">
             <span class="popup__error popup__error-name"></span>
-
             <input
               class="popup__input form__input text text_size_small form-user-about"
               type="text"
               name="about"
-              value="Исследователь океана"
+              value=""
               required
               minlength="2"
               maxlength="200"
-              placeholder="О себе"
-            />
+              placeholder="О себе">
             <span class="popup__error popup__error-about"></span>
-
             <button
               class="popup__button button form-edit__button form-edit__text-button text"
               type="submit"
-              value="Отправить форму сейчас"
-            >
+              value="Отправить форму сейчас">
               Сохранить
               <div class="sr-only">Сохранить</div>
             </button>
@@ -70,7 +64,7 @@
         </div>
       </section>
       <section class="popup add-card-popup">
-        <div class="popup__container add-card-popup__container">
+        <div class="popup__container popup__inactiv-close add-card-popup__container">
           <button class="button-close button add-card-popup__close-button">
             <div class="sr-only">Закрыть</div>
           </button>
@@ -84,8 +78,7 @@
               required
               minlength="2"
               maxlength="30"
-              placeholder="Название"
-            />
+              placeholder="Название">
             <span class="popup__error popup__error-name-card"></span>
             <input
               class="popup__input form__input text text_size_small add-card__text form-add-card-link"
@@ -93,15 +86,13 @@
               name="link"
               value=""
               required
-              placeholder="https://site.com"
-            />
+              placeholder="https://site.com">
             <span class="popup__error popup__error-link"></span>
             <button
               class="popup__button button add-card__button add-card__text-button text"
               type="submit"
               value="Отправить форму сейчас"
-              disabled
-            >
+              disabled>
               Создать
               <div class="sr-only">Создать</div>
             </button>
@@ -109,11 +100,11 @@
         </div>
       </section>
       <section class="popup image-popup" aria-label="Фото из галереи">
-        <figure class="image-popup__element">
+        <figure class="image-popup__element popup__inactiv-close">
           <button class="button-close button image-popup__close-button">
             <div class="sr-only">Закрыть</div>
           </button>
-          <img class="image-popup__image" src="#" alt="Фотография" />
+          <img class="image-popup__image" src="#" alt="Фотография">
           <figcaption class="image-popup__element">
             <p class="image-popup__title"></p>
           </figcaption>
@@ -127,7 +118,7 @@
       <li class="elements__list">
         <figure class="element">
           <button class="button button-card-delete"></button>
-          <img class="element__image" src="#" alt="Фотография" />
+          <img class="element__image" src="#" alt="Фотография">
           <figcaption class="element__caption">
             <p class="title element__title"></p>
             <button class="button button-like">

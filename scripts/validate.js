@@ -16,10 +16,8 @@ const activeButton = (submitButton, inactiveButtonClass) => {
 //Поведение кнопки в зависимости от валидности
 const toggleButtonState = (input, formInputTargetList, submitButton, inactiveButtonClass) => {
   if (hasInvalidInput(formInputTargetList)) {
-    console.log(hasInvalidInput(formInputTargetList));
     disableButton(submitButton, inactiveButtonClass);
   } else {
-    console.log('not true');
     activeButton(submitButton, inactiveButtonClass);
   }
 };

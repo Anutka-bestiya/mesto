@@ -1,10 +1,27 @@
 //Функции Попапов
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', handleEscClose);
+  document.addEventListener('mousedown', handleMouseClose);
+}
+function handleEscClose(evt) {
+  const popupTarget = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    closePopup(popupTarget);
+    document.removeEventListener('keydown', handleEscClose);
+  }
+}
+function handleMouseClose(evt) {
+  const popupTarget = document.querySelector('.popup_opened');
+  if (evt.target === popupTarget) {
+    closePopup(popupTarget);
+    document.removeEventListener('mousedown', handleMouseClose);
+  }
 }
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
+
 //Попап Редактировать профиль
 const popupEdit = document.querySelector('.edit-popup');
 const buttonEditProfileOpen = document.querySelector('.profile__edit-button');
@@ -17,22 +34,24 @@ const userAboutElement = document.querySelector('.user-about');
 //события клика на открытие/закрытие попапа edit-popup
 buttonEditProfileOpen.addEventListener('click', function () {
   openPopup(popupEdit);
+  formEditPopup.reset();
   inputNameEditPopup.value = userNameElement.textContent;
   inputAboutEditPopup.value = userAboutElement.textContent;
+  // clearInputError(popupEdit);
 });
 buttonEditProfileClose.addEventListener('click', function (evt) {
   closePopup(popupEdit);
 });
 //Изменение данных профиля через форму в попап
-// formEditPopup.addEventListener('submit', handleFormSubmit);
-// function handleFormSubmit(event) {
-//   event.preventDefault();
-//   userName = inputNameEditPopup.value;
-//   userAbout = inputAboutEditPopup.value;
-//   userNameElement.textContent = userName;
-//   userAboutElement.textContent = userAbout;
-//   closePopup(popupEdit);
-// }
+formEditPopup.addEventListener('submit', handleFormSubmit);
+function handleFormSubmit(event) {
+  event.preventDefault();
+  userName = inputNameEditPopup.value;
+  userAbout = inputAboutEditPopup.value;
+  userNameElement.textContent = userName;
+  userAboutElement.textContent = userAbout;
+  closePopup(popupEdit);
+}
 //Попап Добавить Карт
 const popupAddCart = document.querySelector('.add-card-popup');
 const buttonAddCartOpen = document.querySelector('.profile__add-button');
@@ -41,6 +60,7 @@ const buttonAddCartClose = document.querySelector('.add-card-popup__close-button
 buttonAddCartOpen.addEventListener('click', function () {
   openPopup(popupAddCart);
   formAddCart.reset();
+  // clearInputError(popupAddCart);
 });
 buttonAddCartClose.addEventListener('click', function (event) {
   closePopup(popupAddCart);
@@ -114,3 +134,11 @@ function addCartSubmit(event) {
   renderCard(newCardCreate);
   closePopup(popupAddCart);
 }
+
+//очистка span с ошибками при закрытии форм
+// function clearInputError(popup) {
+//   const formSpanList = Array.from(popup.querySelectorAll('.popup__input'));
+//   formSpanList.forEach(span => {
+//     hideInputError(formSpanList, span);
+//   });
+// }
