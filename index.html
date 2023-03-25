@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-    <link href="./pages/index.css" rel="stylesheet">
+    <link href="./pages/index.css" rel="stylesheet" />
   </head>
   <body class="page">
     <header class="header section">
       <a class="link" href="#"
-        ><img src="./images/logo.svg" alt="Логотип: Место.Россия" class="logo header__logo"></a>
+        ><img src="./images/logo.svg" alt="Логотип: Место.Россия" class="logo header__logo"
+      /></a>
     </header>
     <main>
       <section class="profile section">
-        <img src="./images/personal-image.jpg" alt="Фото профиля" class="profile__image">
+        <img src="./images/personal-image.jpg" alt="Фото профиля" class="profile__image" />
         <h1 class="profile__name text user-name">Жак-Ив Кусто</h1>
         <button class="button-edit button profile__edit-button">
           <div class="sr-only">Редактировать</div>
@@ -28,23 +29,37 @@
       </section>
       <section class="popup edit-popup">
         <div class="popup__container">
-          <button class="button-close button edit-popup__close-button">
-            <div class="sr-only">Закрыть</div>
-          </button>
-          <h2 class="title edit-popup__title">Редактировать профиль</h2>
-          <form class="form form-edit">
-            <input
-              class="form__input text text_size_small form-user-name"
-              type="text"
-              name="name"
-              placeholder="Имя">
-            <input
-              class="form__input text text_size_small form-user-about"
-              type="text"
-              name="about"
-              placeholder="О себе">
+          <form class="popup__form form-edit" novalidate>
+            <button class="button-close button form-edit__close-button">
+              <div class="sr-only">Закрыть</div>
+            </button>
+            <h2 class="title form-edit__title">Редактировать профиль</h2>
+            <label class="form">
+              <input
+                class="popup__input form__input text text_size_small form-user-name"
+                type="text"
+                name="name"
+                value="Жак-Ив Кусто"
+                required
+                minlength="2"
+                maxlength="40"
+              />
+              <span class="popup__error popup__error-name"></span>
+            </label>
+            <label class="form">
+              <input
+                class="popup__input form__input text text_size_small form-user-about"
+                type="text"
+                name="about"
+                value="Исследователь океана"
+                required
+                minlength="2"
+                maxlength="200"
+              />
+              <span class="popup__error popup__error-about"></span>
+            </label>
             <button
-              class="button form-edit__button form-edit__text-button text"
+              class="popup__button button form-edit__button form-edit__text-button text"
               type="submit"
               value="Отправить форму сейчас"
             >
@@ -55,28 +70,42 @@
         </div>
       </section>
       <section class="popup add-card-popup">
-        <div class="popup__container add-card-popup__container">
-          <button class="button-close button add-card-popup__close-button">
-            <div class="sr-only">Закрыть</div>
-          </button>
-          <h2 class="title add-card-popup__title">Новое место</h2>
-          <form class="form add-card">
-            <input
-              class="form__input text text_size_small add-card__text form-add-card-name"
-              type="text"
-              name="name"
-              value=""
-              placeholder="Название">
-            <input
-              class="form__input text text_size_small add-card__text form-add-card-link"
-              type="text"
-              name="link"
-              value=""
-              placeholder="Ссылка на картинку">
+        <div class="popup__container add-card__container">
+          <form class="popup__form add-card" novalidate>
+            <button class="button-close button add-card__close-button">
+              <div class="sr-only">Закрыть</div>
+            </button>
+            <h2 class="title add-card__title">Новое место</h2>
+            <label class="form">
+              <input
+                class="popup__input form__input text text_size_small add-card__text form-add-card-name"
+                type="text"
+                name="name-card"
+                value=""
+                required
+                minlength="2"
+                maxlength="30"
+                placeholder="Название"
+              />
+              <span class="popup__error popup__error-name-card"></span>
+            </label>
+            <label class="form">
+              <input
+                class="popup__input form__input text text_size_small add-card__text form-add-card-link"
+                type="url"
+                name="link"
+                value=""
+                required
+                placeholder="https://site.com"
+              />
+              <span class="popup__error popup__error-link"></span>
+            </label>
             <button
-              class="button add-card__button add-card__text-button text"
+              class="popup__button button add-card__button add-card__text-button text"
               type="submit"
-              value="Отправить форму сейчас">
+              value="Отправить форму сейчас"
+              disabled
+            >
               Создать
               <div class="sr-only">Создать</div>
             </button>
@@ -88,7 +117,7 @@
           <button class="button-close button image-popup__close-button">
             <div class="sr-only">Закрыть</div>
           </button>
-          <img class="image-popup__image" src="#" alt="Фотография">
+          <img class="image-popup__image" src="#" alt="Фотография" />
           <figcaption class="image-popup__element">
             <p class="image-popup__title"></p>
           </figcaption>
@@ -102,7 +131,7 @@
       <li class="elements__list">
         <figure class="element">
           <button class="button button-card-delete"></button>
-          <img class="element__image" src="#" alt="Фотография">
+          <img class="element__image" src="#" alt="Фотография" />
           <figcaption class="element__caption">
             <p class="title element__title"></p>
             <button class="button button-like">
@@ -112,6 +141,8 @@
         </figure>
       </li>
     </template>
+    <script src="./scripts/cards.js"></script>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
