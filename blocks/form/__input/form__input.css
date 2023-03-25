@@ -5,3 +5,6 @@
   padding-bottom: 8px;
   margin-bottom: 31px;
 }
+.form__input:focus-visible {
+  outline: none;
+}

@@ -23,12 +23,10 @@ editProfileCloseButton.addEventListener('click', function () {
 });
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  // const popupOpen = document.querySelector('.popup');
   popup.style.transition = 'visibility 0s, opacity 2s ease-in-out';
 }
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  // const popupClose = document.querySelector('.popup');
   popup.style.transition = 'visibility 0s 2s, opacity 2s ease-in-out';
 }
 //Изменение данных профиля через форму в попап

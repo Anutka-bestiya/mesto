@@ -7,3 +7,7 @@
   opacity: 0.2;
   cursor: default;
 }
+.popup__button_disabled:disabled {
+  opacity: 0.2;
+  cursor: default;
+}

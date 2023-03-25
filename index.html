@@ -29,7 +29,7 @@
       </section>
       <section class="popup edit-popup">
         <div class="popup__container">
-          <form class="popup__form form-edit">
+          <form class="popup__form form-edit" novalidate>
             <button class="button-close button form-edit__close-button">
               <div class="sr-only">Закрыть</div>
             </button>
@@ -44,7 +44,7 @@
                 minlength="2"
                 maxlength="40"
               />
-              <span class="popup__error"></span>
+              <span class="popup__error popup__error-name"></span>
             </label>
             <label class="form">
               <input
@@ -56,7 +56,7 @@
                 minlength="2"
                 maxlength="200"
               />
-              <span class="popup__error"></span>
+              <span class="popup__error popup__error-about"></span>
             </label>
             <button
               class="popup__button button form-edit__button form-edit__text-button text"
@@ -71,7 +71,7 @@
       </section>
       <section class="popup add-card-popup">
         <div class="popup__container add-card__container">
-          <form class="popup__form add-card">
+          <form class="popup__form add-card" novalidate>
             <button class="button-close button add-card__close-button">
               <div class="sr-only">Закрыть</div>
             </button>
@@ -87,7 +87,7 @@
                 maxlength="30"
                 placeholder="Название"
               />
-              <span class="popup__error"></span>
+              <span class="popup__error popup__error-name-card"></span>
             </label>
             <label class="form">
               <input
@@ -98,12 +98,13 @@
                 required
                 placeholder="https://site.com"
               />
-              <span class="popup__error"></span>
+              <span class="popup__error popup__error-link"></span>
             </label>
             <button
               class="popup__button button add-card__button add-card__text-button text"
               type="submit"
               value="Отправить форму сейчас"
+              disabled
             >
               Создать
               <div class="sr-only">Создать</div>
