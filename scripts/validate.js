@@ -1,6 +1,6 @@
 //Проверка валидности формы методом some
-const hasInvalidInput = formInputList => {
-  return formInputList.some(input => {
+const hasInvalidInput = formInputTargetList => {
+  return formInputTargetList.some(input => {
     return !input.validity.valid;
   });
 };
@@ -14,10 +14,12 @@ const activeButton = (submitButton, inactiveButtonClass) => {
   submitButton.classList.remove(inactiveButtonClass);
 };
 //Поведение кнопки в зависимости от валидности
-const toggleButtonState = (input, formInputList, submitButton, inactiveButtonClass) => {
-  if (hasInvalidInput(formInputList)) {
+const toggleButtonState = (input, formInputTargetList, submitButton, inactiveButtonClass) => {
+  if (hasInvalidInput(formInputTargetList)) {
+    console.log(hasInvalidInput(formInputTargetList));
     disableButton(submitButton, inactiveButtonClass);
   } else {
+    console.log('not true');
     activeButton(submitButton, inactiveButtonClass);
   }
 };
@@ -42,23 +44,22 @@ const checkInputValidity = (input, config) => {
   }
 };
 //Навешивание слушателей на форму
-const setEventListener = (formList, formInputList, config) => {
+const setEventListener = (formInputList, config) => {
   formInputList.forEach(input => {
     input.addEventListener('input', evt => {
-      const submitButton = evt.target
-        .closest(config.formSelector)
-        .querySelector(config.submitButtonSelector);
+      const formTargetList = evt.target.closest(config.formSelector);
+      const submitButton = formTargetList.querySelector(config.submitButtonSelector);
+      const formInputTargetList = Array.from(formTargetList.querySelectorAll(config.inputSelector));
       checkInputValidity(input, config);
-      toggleButtonState(input, formInputList, submitButton, config.inactiveButtonClass);
+      toggleButtonState(input, formInputTargetList, submitButton, config.inactiveButtonClass);
     });
   });
 };
 //enableValidation запускает процесс наложения валидации на формы
 //выбираю все формы
 const enableValidation = config => {
-  const formList = document.querySelectorAll(config.formSelector);
-  const formInputList = Array.from(document.querySelectorAll(config.inputSelector));
-  setEventListener(formList, formInputList, config);
+  const formInputList = document.querySelectorAll(config.inputSelector);
+  setEventListener(formInputList, config);
 };
 // включение валидации вызовом enableValidation
 // все настройки передаются при вызове
