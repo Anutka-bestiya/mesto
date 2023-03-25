@@ -58,7 +58,6 @@ const setEventListener = (formList, formInputList, config) => {
 const enableValidation = config => {
   const formList = document.querySelectorAll(config.formSelector);
   const formInputList = Array.from(document.querySelectorAll(config.inputSelector));
-
   setEventListener(formList, formInputList, config);
 };
 // включение валидации вызовом enableValidation
