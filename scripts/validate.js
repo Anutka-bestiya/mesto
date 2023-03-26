@@ -1,24 +1,24 @@
 //Проверка валидности формы методом some
-const hasInvalidInput = formInputTargetList => {
-  return formInputTargetList.some(input => {
+const hasInvalidInput = inputList => {
+  return Array.from(inputList).some(input => {
     return !input.validity.valid;
   });
 };
 //Активировать/дизактивировать кнопку submit
-const disableButton = (submitButton, inactiveButtonClass) => {
-  submitButton.disabled = true;
-  submitButton.classList.add(inactiveButtonClass);
+const disableButton = (subbtn, inactiveButtonClass) => {
+  subbtn.disabled = true;
+  subbtn.classList.add(inactiveButtonClass);
 };
-const activeButton = (submitButton, inactiveButtonClass) => {
-  submitButton.disabled = false;
-  submitButton.classList.remove(inactiveButtonClass);
+const activeButton = (subbtn, inactiveButtonClass) => {
+  subbtn.disabled = false;
+  subbtn.classList.remove(inactiveButtonClass);
 };
 //Поведение кнопки в зависимости от валидности
-const toggleButtonState = (input, formInputTargetList, submitButton, inactiveButtonClass) => {
-  if (hasInvalidInput(formInputTargetList)) {
-    disableButton(submitButton, inactiveButtonClass);
+const toggleButtonState = (inputList, subbtn, inactiveButtonClass) => {
+  if (hasInvalidInput(inputList)) {
+    disableButton(subbtn, inactiveButtonClass);
   } else {
-    activeButton(submitButton, inactiveButtonClass);
+    activeButton(subbtn, inactiveButtonClass);
   }
 };
 //Показать/скрыть невалидность input
@@ -42,22 +42,23 @@ const checkInputValidity = (input, config) => {
   }
 };
 //Навешивание слушателей на форму
-const setEventListener = (formInputList, config) => {
+const setEventListener = (inputList, formInputList, config) => {
   formInputList.forEach(input => {
-    input.addEventListener('input', evt => {
-      const formTargetList = evt.target.closest(config.formSelector);
-      const submitButton = formTargetList.querySelector(config.submitButtonSelector);
-      const formInputTargetList = Array.from(formTargetList.querySelectorAll(config.inputSelector));
+    input.addEventListener('input', () => {
+      const subbtn = inputList.querySelector(config.submitButtonSelector);
       checkInputValidity(input, config);
-      toggleButtonState(input, formInputTargetList, submitButton, config.inactiveButtonClass);
+      toggleButtonState(inputList, subbtn, config.inactiveButtonClass);
     });
   });
 };
 //enableValidation запускает процесс наложения валидации на формы
 //выбираю все формы
 const enableValidation = config => {
-  const formInputList = document.querySelectorAll(config.inputSelector);
-  setEventListener(formInputList, config);
+  const formList = document.querySelectorAll(config.formSelector);
+  const formInputList = Array.from(document.querySelectorAll(config.inputSelector));
+  formList.forEach(inputList => {
+    setEventListener(inputList, formInputList, config);
+  });
 };
 // включение валидации вызовом enableValidation
 // все настройки передаются при вызове
