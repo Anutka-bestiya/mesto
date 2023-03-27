@@ -1,6 +1,6 @@
 //Проверка валидности формы методом some
-const hasInvalidInput = inputList => {
-  return Array.from(inputList).some(input => {
+const hasInvalidInput = form => {
+  return Array.from(form).some(input => {
     return !input.validity.valid;
   });
 };
@@ -14,8 +14,8 @@ const activeButton = (subbtn, inactiveButtonClass) => {
   subbtn.classList.remove(inactiveButtonClass);
 };
 //Поведение кнопки в зависимости от валидности
-const toggleButtonState = (inputList, subbtn, inactiveButtonClass) => {
-  if (hasInvalidInput(inputList)) {
+const toggleButtonState = (form, subbtn, inactiveButtonClass) => {
+  if (hasInvalidInput(form)) {
     disableButton(subbtn, inactiveButtonClass);
   } else {
     activeButton(subbtn, inactiveButtonClass);
@@ -33,8 +33,8 @@ const hideInputError = (input, formErrorSpan, config) => {
   input.classList.remove(config.inputErrorClass);
 };
 //Действия в случае валидности / не валидности формы
-const checkInputValidity = (inputList, input, config) => {
-  const formErrorSpan = inputList.querySelector(`.${config.errorClass}-${input.name}`);
+const checkInputValidity = (form, input, config) => {
+  const formErrorSpan = form.querySelector(`.${config.errorClass}-${input.name}`);
 
   if (!input.validity.valid) {
     showInputError(input, input.validationMessage, formErrorSpan, config);
@@ -43,12 +43,12 @@ const checkInputValidity = (inputList, input, config) => {
   }
 };
 //Навешивание слушателей на форму
-const setEventListener = (inputList, formInputList, config) => {
+const setEventListener = (form, formInputList, config) => {
   formInputList.forEach(input => {
+    const subbtn = form.querySelector(config.submitButtonSelector);
     input.addEventListener('input', () => {
-      const subbtn = inputList.querySelector(config.submitButtonSelector);
-      checkInputValidity(inputList, input, config);
-      toggleButtonState(inputList, subbtn, config.inactiveButtonClass);
+      checkInputValidity(form, input, config);
+      toggleButtonState(form, subbtn, config.inactiveButtonClass);
     });
   });
 };
@@ -57,10 +57,10 @@ const setEventListener = (inputList, formInputList, config) => {
 const enableValidation = config => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
 
-  formList.forEach(inputList => {
-    const formInputList = Array.from(inputList.querySelectorAll(config.inputSelector));
+  formList.forEach(form => {
+    const formInputList = Array.from(form.querySelectorAll(config.inputSelector));
 
-    setEventListener(inputList, formInputList, config);
+    setEventListener(form, formInputList, config);
   });
 };
 // включение валидации вызовом enableValidation
