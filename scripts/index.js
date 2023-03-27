@@ -3,7 +3,6 @@
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', handleEscClose);
-  // popup.addEventListener('mousedown', handleMouseClose);
 }
 
 //Закрытие Попапов
@@ -17,9 +16,7 @@ function handleEscClose(evt) {
 
 function handleMouseClose(evt) {
   if (evt.target === evt.currentTarget) {
-    const popupTarget = document.querySelector('.popup_opened');
-
-    closePopup(popupTarget);
+    closePopup(evt.target);
   }
 }
 

@@ -33,8 +33,9 @@ const hideInputError = (input, formErrorSpan, config) => {
   input.classList.remove(config.inputErrorClass);
 };
 //Действия в случае валидности / не валидности формы
-const checkInputValidity = (input, config) => {
-  const formErrorSpan = document.querySelector(`.${config.errorClass}-${input.name}`);
+const checkInputValidity = (inputList, input, config) => {
+  const formErrorSpan = inputList.querySelector(`.${config.errorClass}-${input.name}`);
+
   if (!input.validity.valid) {
     showInputError(input, input.validationMessage, formErrorSpan, config);
   } else {
@@ -46,7 +47,7 @@ const setEventListener = (inputList, formInputList, config) => {
   formInputList.forEach(input => {
     input.addEventListener('input', () => {
       const subbtn = inputList.querySelector(config.submitButtonSelector);
-      checkInputValidity(input, config);
+      checkInputValidity(inputList, input, config);
       toggleButtonState(inputList, subbtn, config.inactiveButtonClass);
     });
   });
@@ -54,9 +55,11 @@ const setEventListener = (inputList, formInputList, config) => {
 //enableValidation запускает процесс наложения валидации на формы
 //выбираю все формы
 const enableValidation = config => {
-  const formList = document.querySelectorAll(config.formSelector);
-  const formInputList = Array.from(document.querySelectorAll(config.inputSelector));
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+
   formList.forEach(inputList => {
+    const formInputList = Array.from(inputList.querySelectorAll(config.inputSelector));
+
     setEventListener(inputList, formInputList, config);
   });
 };
