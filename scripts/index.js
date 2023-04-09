@@ -89,9 +89,6 @@ buttonAddCartOpen.addEventListener('click', function () {
 
   newNameCard.value = '';
   newLinkCard.value = '';
-
-  // formAddCart.reset();
-  // clearInputError(popupAddCart);
 });
 
 buttonAddCartClose.addEventListener('click', function (event) {
@@ -108,57 +105,6 @@ function addCartSubmit(event) {
 
   renderCard(newCardCreate);
   closePopup(popupAddCart);
-}
-
-//Создание карт из массива, elements card
-const cardsContainer = document.querySelector('.elements');
-const initialCard = document
-  .querySelector('#cardTemplate')
-  .content.querySelector('.elements__list');
-
-//Функция создания карт из массива
-initialCards.forEach(card => {
-  const finalCard = createCard(card);
-
-  renderCard(finalCard);
-});
-
-function createCard(card) {
-  const element = initialCard.cloneNode(true);
-  const cardName = element.querySelector('.element__title');
-  const cardImage = element.querySelector('.element__image');
-
-  cardName.textContent = card.name;
-  cardImage.src = card.link;
-  cardImage.alt = `Фотография ${card.name}`;
-
-  const elementDeleteButton = element.querySelector('.button-card-delete');
-  const likeButton = element.querySelector('.button-like');
-  const cardImageLink = element.querySelector('.element__image');
-
-  elementDeleteButton.addEventListener('click', handleDeleteElementClick);
-  likeButton.addEventListener('click', likeButtonClick);
-  cardImageLink.addEventListener('click', openPopupBigImage);
-
-  return element;
-}
-
-function renderCard(card) {
-  cardsContainer.prepend(card);
-}
-
-//удаление карточки
-function handleDeleteElementClick(event) {
-  const button = event.target;
-  const card = button.closest('.elements__list');
-
-  card.remove();
-}
-
-//кнопка поставить лайк
-function likeButtonClick(event) {
-  const button = event.target;
-  button.classList.toggle('button-like_active');
 }
 
 //Попап BigImage
@@ -184,6 +130,72 @@ function openPopupBigImage(event) {
 buttonCloseBigImage.addEventListener('click', function () {
   closePopup(popupBigImage);
 });
+
+//Класс кард
+class Card {
+  constructor(data, cardTemplateSelector, handleCardClick) {
+    this._link = data.link;
+    this._name = data.name;
+    this._cardTemplateSelector = cardTemplateSelector;
+    this._handleCardClick = handleCardClick;
+    this._card = undefined;
+  }
+
+  _getTemplate = () => {
+    const cardElement = this._cardTemplateSelector.cloneNode(true);
+
+    return cardElement;
+  };
+
+  _handleCardClick = () => {};
+
+  _handleDeleteElementClick = () => {
+    this._card.remove();
+  };
+  _likeButtonClick = () => {
+    this._likeButton.classList.toggle('button-like_active');
+  };
+
+  _setEventListeners() {
+    this._cardImage.addEventListener('click', this._handleCardClick);
+    this._deleteCardButton.addEventListener('click', this._handleDeleteElementClick);
+    this._likeButton.addEventListener('click', this._likeButtonClick);
+  }
+
+  createCard = () => {
+    this._card = this._getTemplate();
+    this._cardName = this._card.querySelector('.element__title');
+    this._cardImage = this._card.querySelector('.element__image');
+    this._cardName.textContent = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = `Фотография ${this._name}`;
+    this._deleteCardButton = this._card.querySelector('.button-card-delete');
+    this._likeButton = this._card.querySelector('.button-like');
+
+    this._setEventListeners();
+
+    return this._card;
+  };
+  console = () => {
+    console.log(this._handleCardClick);
+    console.log(this._likeButton);
+  };
+}
+const cardsContainer = document.querySelector('.elements');
+const initialCard = document
+  .querySelector('#cardTemplate')
+  .content.querySelector('.elements__list');
+
+//Функция создания карт из массива
+
+initialCards.forEach(item => {
+  const card = new Card(item, initialCard, openPopupBigImage);
+  card.console();
+  const card1 = card.createCard();
+  cardsContainer.prepend(card.createCard());
+});
+
+// const cardItem = new Card(data, initialCard, openPopupBigImage);
 
 //очистка span с ошибками при закрытии форм
 // function clearInputError(popup) {
