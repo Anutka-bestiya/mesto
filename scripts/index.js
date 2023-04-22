@@ -46,16 +46,13 @@ import { initialCards } from './cards.js';
 import { FormValidator } from './FormValidator.js';
 
 //Функция создания карт из массива
-// initialCards.forEach(item => {
-//   const card = new Card(item, initialCard, openPopupBigImage);
-//   cardsContainer.prepend(card.createCard());
-// });
-
 initialCards.forEach(renderCard);
+
 function renderCard(item) {
   const card = new Card(item, initialCard, openPopupBigImage);
   cardsContainer.prepend(card.createCard());
 }
+
 //Валидация форм
 const formEditValidation = new FormValidator(config, popupEdit);
 formEditValidation.enableValidation();
