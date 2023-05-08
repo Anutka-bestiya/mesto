@@ -9,9 +9,7 @@ export class Card {
   }
 
   _getTemplate = () => {
-    const cardElement = this._cardTemplateSelector.cloneNode(true);
-
-    return cardElement;
+    return this._cardTemplateSelector.cloneNode(true);
   };
 
   // _handleCardClick = () => {};
