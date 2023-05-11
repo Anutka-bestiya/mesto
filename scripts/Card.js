@@ -1,6 +1,6 @@
 //Класс кард
 export class Card {
-  constructor(data, cardTemplateSelector, handleCardClick) {
+  constructor(data, handleCardClick, cardTemplateSelector) {
     this._link = data.link;
     this._name = data.name;
     this._cardTemplateSelector = cardTemplateSelector;
@@ -12,8 +12,6 @@ export class Card {
     return this._cardTemplateSelector.cloneNode(true);
   };
 
-  // _handleCardClick = () => {};
-
   _handleDeleteElementClick = () => {
     this._card.remove();
   };
@@ -23,10 +21,9 @@ export class Card {
   };
 
   _setEventListeners() {
-    this._cardImage.addEventListener('click', this._handleCardClick);
-    // this._cardImage.addEventListener('click', () => {
-    //   this._handleCardClick(this._name, this._link);
-    // });
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link);
+    });
     this._deleteCardButton.addEventListener('click', this._handleDeleteElementClick);
     this._likeButton.addEventListener('click', this._likeButtonClick);
   }
@@ -39,6 +36,7 @@ export class Card {
     this._cardName.textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = `Фотография ${this._name}`;
+    this._cardImage.classList.add('button__open');
 
     this._deleteCardButton = this._card.querySelector('.button-card-delete');
     this._likeButton = this._card.querySelector('.button-like');

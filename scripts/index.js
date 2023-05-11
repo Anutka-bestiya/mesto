@@ -1,56 +1,63 @@
-//Попап Редактировать профиль
-const popupEdit = document.querySelector('.edit-popup');
-const buttonEditProfileOpen = document.querySelector('.profile__edit-button');
-const buttonEditProfileClose = document.querySelector('.edit-popup__close-button');
-const formEditPopup = document.querySelector('.form-edit');
-const buttonSubmitFormEdit = formEditPopup.querySelector('.form-edit__button');
-const inputNameEditPopup = formEditPopup.querySelector('.form-user-name');
-const inputAboutEditPopup = formEditPopup.querySelector('.form-user-about');
-const userNameElement = document.querySelector('.user-name');
-const userAboutElement = document.querySelector('.user-about');
-
-//Попап Добавить Карт
-const popupAddCart = document.querySelector('.add-card-popup');
-const buttonAddCartOpen = document.querySelector('.profile__add-button');
-const buttonAddCartClose = document.querySelector('.add-card-popup__close-button');
-const formAddCart = document.querySelector('.add-card');
-const buttonFormAddCart = formAddCart.querySelector('.add-card__button');
-const newNameCard = formAddCart.querySelector('.form-add-card-name');
-const newLinkCard = formAddCart.querySelector('.form-add-card-link');
-
-//Попап BigImage
-const popupBigImage = document.querySelector('.image-popup');
-const bigImagePopupOpen = popupBigImage.querySelector('.image-popup__image');
-const bigNamePopupOpen = popupBigImage.querySelector('.image-popup__title');
-const buttonCloseBigImage = document.querySelector('.image-popup__close-button');
-
-// Card
-const cardsContainer = document.querySelector('.elements');
-const initialCard = document
-  .querySelector('#cardTemplate')
-  .content.querySelector('.elements__list');
-
-//config
-const config = {
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error'
-};
-
 //Импорты
-// import * as data from './constants.js';
+import {
+  popupEdit,
+  buttonEditProfileOpen,
+  buttonEditProfileClose,
+  formEditPopup,
+  buttonSubmitFormEdit,
+  inputNameEditPopup,
+  inputAboutEditPopup,
+  userNameElement,
+  userAboutElement,
+  popupAddCart,
+  buttonAddCartOpen,
+  buttonAddCartClose,
+  formAddCart,
+  buttonFormAddCart,
+  newNameCard,
+  newLinkCard,
+  popupBigImage,
+  bigImagePopupOpen,
+  bigNamePopupOpen,
+  buttonCloseBigImage,
+  cardsContainer,
+  initialCard,
+  config
+} from './constants.js';
 import { Card } from './Card.js';
 import { initialCards } from './cards.js';
 import { FormValidator } from './FormValidator.js';
+import { Section } from './Section.js';
+import { Popup, PopupWithImage } from './Popup.js';
+
+// Отрисовка карт в разметке
+
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: item => {
+      const card = createCard(item);
+
+      cardSection.addItem(card);
+    }
+  },
+  cardsContainer
+);
+cardSection.renderItems();
+
+const popupBigImage1 = new PopupWithImage('.image-popup');
+popupBigImage1.setEventListeners();
 
 //Функция создания карт из массива
-initialCards.forEach(renderCard);
 
-function renderCard(item) {
-  const card = new Card(item, initialCard, openPopupBigImage);
-  cardsContainer.prepend(card.createCard());
+function createCard(item) {
+  const card = new Card(item, openPopupBigImage1, initialCard);
+
+  return card.createCard();
+}
+
+function openPopupBigImage1(name, link) {
+  popupBigImage1.open(name, link);
 }
 
 //Валидация форм
@@ -61,12 +68,15 @@ const formAddCartValidation = new FormValidator(config, popupAddCart);
 formAddCartValidation.enableValidation();
 
 //Попапы
-popupEdit.addEventListener('mousedown', handleMouseClose);
-buttonEditProfileOpen.addEventListener('click', openPopupEditProfile);
-buttonEditProfileClose.addEventListener('click', function (evt) {
-  closePopup(popupEdit);
-});
-formEditPopup.addEventListener('submit', handleFormSubmit);
+const popupEdit1 = new Popup('.edit-popup');
+popupEdit1.setEventListeners();
+
+// popupEdit.addEventListener('mousedown', handleMouseClose);
+// buttonEditProfileOpen.addEventListener('click', openPopupEditProfile);
+// buttonEditProfileClose.addEventListener('click', function (evt) {
+//   closePopup(popupEdit);
+// });
+// formEditPopup.addEventListener('submit', handleFormSubmit);
 
 popupAddCart.addEventListener('mousedown', handleMouseClose);
 buttonAddCartOpen.addEventListener('click', openPopupAddCart);
@@ -75,10 +85,10 @@ buttonAddCartClose.addEventListener('click', function (event) {
 });
 formAddCart.addEventListener('submit', addCartSubmit);
 
-popupBigImage.addEventListener('mousedown', handleMouseClose);
-buttonCloseBigImage.addEventListener('click', function () {
-  closePopup(popupBigImage);
-});
+// popupBigImage.addEventListener('mousedown', handleMouseClose);
+// buttonCloseBigImage.addEventListener('click', function () {
+//   closePopup(popupBigImage);
+// });
 
 //Функции Попапов
 //Открытие Попапов
@@ -154,13 +164,10 @@ function addCartSubmit(event) {
 
 //Попап BigImage
 //Открыть Попап BigImage
-function openPopupBigImage(event) {
+function openPopupBigImage(name, link) {
   openPopup(popupBigImage);
 
-  const image = event.target;
-  const title = image.closest('.element').querySelector('.title').textContent;
-
-  bigImagePopupOpen.src = image.src;
-  bigImagePopupOpen.alt = image.alt;
-  bigNamePopupOpen.textContent = title;
+  bigImagePopupOpen.src = link;
+  bigImagePopupOpen.alt = name;
+  bigNamePopupOpen.textContent = name;
 }
