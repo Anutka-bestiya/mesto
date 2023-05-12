@@ -28,7 +28,7 @@ import { Card } from './Card.js';
 import { initialCards } from './cards.js';
 import { FormValidator } from './FormValidator.js';
 import { Section } from './Section.js';
-import { Popup, PopupWithImage } from './Popup.js';
+import { PopupWithImage, PopupWithForm } from './Popup.js';
 
 // Отрисовка карт в разметке
 
@@ -68,7 +68,7 @@ const formAddCartValidation = new FormValidator(config, popupAddCart);
 formAddCartValidation.enableValidation();
 
 //Попапы
-const popupEdit1 = new Popup('.edit-popup');
+const popupEdit1 = new PopupWithForm('.edit-popup', buttonSubmitFormEdit);
 popupEdit1.setEventListeners();
 
 // popupEdit.addEventListener('mousedown', handleMouseClose);

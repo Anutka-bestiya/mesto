@@ -51,3 +51,19 @@ export class PopupWithImage extends Popup {
     bigName.textContent = name;
   };
 }
+
+export class PopupWithForm extends Popup {
+  constructor(popupSelector, buttonSubmit) {
+    super(popupSelector);
+    this._buttonSubmit = buttonSubmit;
+  }
+
+  _getInputValues = () => {
+    const inputList = this._popup.querySelectorAll('.form__input');
+  };
+
+  //     Содержит приватный метод _getInputValues, который собирает данные всех полей формы.
+  // Перезаписывает родительский метод setEventListeners.
+  // Метод setEventListeners класса PopupWithForm должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.
+  // Перезаписывает родительский метод close, так как при закрытии попапа форма должна ещё и сбрасываться.
+}
