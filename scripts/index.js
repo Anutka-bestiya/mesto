@@ -1,25 +1,9 @@
 //Импорты
 import {
-  popupEdit,
-  buttonEditProfileOpen,
-  buttonEditProfileClose,
-  formEditPopup,
-  buttonSubmitFormEdit,
+  popupEditElement,
   inputNameEditPopup,
   inputAboutEditPopup,
-  userNameElement,
-  userAboutElement,
-  popupAddCart,
-  buttonAddCartOpen,
-  buttonAddCartClose,
-  formAddCart,
-  buttonFormAddCart,
-  newNameCard,
-  newLinkCard,
-  popupBigImage,
-  bigImagePopupOpen,
-  bigNamePopupOpen,
-  buttonCloseBigImage,
+  popupAddCartElement,
   cardsContainer,
   initialCard,
   config
@@ -29,9 +13,9 @@ import { initialCards } from './cards.js';
 import { FormValidator } from './FormValidator.js';
 import { Section } from './Section.js';
 import { PopupWithImage, PopupWithForm } from './Popup.js';
+import { UserInfo } from './UserInfo.js';
 
 // Отрисовка карт в разметке
-
 const cardSection = new Section(
   {
     items: initialCards,
@@ -45,129 +29,62 @@ const cardSection = new Section(
 );
 cardSection.renderItems();
 
-const popupBigImage1 = new PopupWithImage('.image-popup');
-popupBigImage1.setEventListeners();
-
 //Функция создания карт из массива
-
 function createCard(item) {
-  const card = new Card(item, openPopupBigImage1, initialCard);
+  const card = new Card(item, openPopupBigImage, initialCard);
 
   return card.createCard();
 }
 
-function openPopupBigImage1(name, link) {
-  popupBigImage1.open(name, link);
+function openPopupBigImage(name, link) {
+  popupBigImage.open(name, link);
 }
 
 //Валидация форм
-const formEditValidation = new FormValidator(config, popupEdit);
+const formEditValidation = new FormValidator(config, popupEditElement);
 formEditValidation.enableValidation();
 
-const formAddCartValidation = new FormValidator(config, popupAddCart);
+const formAddCartValidation = new FormValidator(config, popupAddCartElement);
 formAddCartValidation.enableValidation();
 
-//Попапы
-const popupEdit1 = new PopupWithForm('.edit-popup', buttonSubmitFormEdit);
-popupEdit1.setEventListeners();
+// class UserInfo
+const userInfo = new UserInfo('.user-name', '.user-about');
 
-// popupEdit.addEventListener('mousedown', handleMouseClose);
-// buttonEditProfileOpen.addEventListener('click', openPopupEditProfile);
-// buttonEditProfileClose.addEventListener('click', function (evt) {
-//   closePopup(popupEdit);
-// });
-// formEditPopup.addEventListener('submit', handleFormSubmit);
+// Попапы
+const popupBigImage = new PopupWithImage('.image-popup');
+popupBigImage.setEventListeners();
 
-popupAddCart.addEventListener('mousedown', handleMouseClose);
-buttonAddCartOpen.addEventListener('click', openPopupAddCart);
-buttonAddCartClose.addEventListener('click', function (event) {
-  closePopup(popupAddCart);
-});
-formAddCart.addEventListener('submit', addCartSubmit);
+const popupEdit = new PopupWithForm('.edit-popup', handleEditFormSubmit, handleEditFormOpen);
+popupEdit.setEventListeners();
 
-// popupBigImage.addEventListener('mousedown', handleMouseClose);
-// buttonCloseBigImage.addEventListener('click', function () {
-//   closePopup(popupBigImage);
-// });
-
-//Функции Попапов
-//Открытие Попапов
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', handleEscClose);
+function handleEditFormSubmit(data) {
+  userInfo.setUserInfo(data);
+  formEditValidation.resetError();
 }
 
-//Закрытие Попапов
-function handleEscClose(evt) {
-  if (evt.key === 'Escape') {
-    const popupTarget = document.querySelector('.popup_opened');
+function handleEditFormOpen() {
+  const inputValueList = userInfo.getUserInfo();
 
-    closePopup(popupTarget);
-  }
-}
-
-function handleMouseClose(evt) {
-  if (evt.target === evt.currentTarget) {
-    closePopup(evt.target);
-  }
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', handleEscClose);
-}
-
-//Попап Редактировать профиль
-//события клика на открытие/закрытие попапа edit-popup
-function openPopupEditProfile() {
-  openPopup(popupEdit);
-
-  inputNameEditPopup.value = userNameElement.textContent;
-  inputAboutEditPopup.value = userAboutElement.textContent;
+  inputNameEditPopup.value = inputValueList.userName;
+  inputAboutEditPopup.value = inputValueList.userAbout;
 
   formEditValidation.resetError();
 }
 
-//Изменение данных профиля через форму в попап
-function handleFormSubmit(event) {
-  event.preventDefault();
+const popupAddCart = new PopupWithForm(
+  '.add-card-popup',
+  handleAddCartFormSubmit,
+  handleAddCartFormOpen
+);
+popupAddCart.setEventListeners();
 
-  const userName = inputNameEditPopup.value;
-  const userAbout = inputAboutEditPopup.value;
+function handleAddCartFormSubmit(data) {
+  const newCard = createCard({ name: data.name, link: data.link });
 
-  userNameElement.textContent = userName;
-  userAboutElement.textContent = userAbout;
-
-  closePopup(popupEdit);
-}
-
-//Попап Добавить Карт
-//события клика на открытие/закрытие попапа add-card
-function openPopupAddCart() {
-  openPopup(popupAddCart);
-
-  newNameCard.value = '';
-  newLinkCard.value = '';
-
+  cardSection.addItem(newCard);
   formAddCartValidation.resetError();
 }
 
-//Добавление Карт через форму в попап
-function addCartSubmit(event) {
-  event.preventDefault();
-
-  const newCard = { name: newNameCard.value, link: newLinkCard.value };
-
-  renderCard(newCard);
-  closePopup(popupAddCart);
-}
-
-//Попап BigImage
-//Открыть Попап BigImage
-function openPopupBigImage(name, link) {
-  openPopup(popupBigImage);
-
-  bigImagePopupOpen.src = link;
-  bigImagePopupOpen.alt = name;
-  bigNamePopupOpen.textContent = name;
+function handleAddCartFormOpen() {
+  formAddCartValidation.resetError();
 }

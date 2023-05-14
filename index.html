@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
-    <link href="./pages/index.css" rel="stylesheet" />
+    <link href="./pages/index.css" rel="stylesheet">
   </head>
   <body class="page">
     <header class="header section">
@@ -14,13 +14,13 @@
     </header>
     <main>
       <section class="profile section">
-        <img src="./images/personal-image.jpg" alt="Фото профиля" class="profile__image" />
+        <img src="./images/personal-image.jpg" alt="Фото профиля" class="profile__image">
         <h1 class="profile__name text user-name">Жак-Ив Кусто</h1>
         <button class="button-edit button__open button profile__edit-button edit-popup-open">
           <div class="sr-only">Редактировать</div>
         </button>
         <p class="profile__about text user-about">Исследователь океана</p>
-        <button class="button-add button__open button profile__add-button">
+        <button class="button-add button__open button profile__add-button add-card-popup-open">
           <div class="sr-only">Добавить</div>
         </button>
       </section>
@@ -42,8 +42,7 @@
               required
               minlength="2"
               maxlength="40"
-              placeholder="Имя"
-            />
+              placeholder="Имя">
             <span class="popup__error popup__error-name"></span>
             <input
               class="popup__input form__input text text_size_small form-user-about"
@@ -53,14 +52,12 @@
               required
               minlength="2"
               maxlength="200"
-              placeholder="О себе"
-            />
+              placeholder="О себе">
             <span class="popup__error popup__error-about"></span>
             <button
               class="popup__button button form-edit__button form-edit__text-button text"
               type="submit"
-              value="Отправить форму сейчас"
-            >
+              value="Отправить форму сейчас">
               Сохранить
               <div class="sr-only">Сохранить</div>
             </button>
@@ -77,29 +74,26 @@
             <input
               class="popup__input form__input text text_size_small add-card__text form-add-card-name"
               type="text"
-              name="name-card"
+              name="name"
               value=""
               required
               minlength="2"
               maxlength="30"
-              placeholder="Название"
-            />
-            <span class="popup__error popup__error-name-card"></span>
+              placeholder="Название">
+            <span class="popup__error popup__error-name"></span>
             <input
               class="popup__input form__input text text_size_small add-card__text form-add-card-link"
               type="url"
               name="link"
               value=""
               required
-              placeholder="https://site.com"
-            />
+              placeholder="https://site.com">
             <span class="popup__error popup__error-link"></span>
             <button
               class="popup__button button add-card__button add-card__text-button text"
               type="submit"
               value="Отправить форму сейчас"
-              disabled
-            >
+              disabled>
               Создать
               <div class="sr-only">Создать</div>
             </button>
@@ -111,7 +105,7 @@
           <button class="button-close button image-popup__close-button">
             <div class="sr-only">Закрыть</div>
           </button>
-          <img class="image-popup__image" src="#" alt="Фотография" />
+          <img class="image-popup__image" src="#" alt="Фотография">
           <figcaption class="image-popup__element">
             <p class="image-popup__title"></p>
           </figcaption>
@@ -124,8 +118,10 @@
     <template id="cardTemplate">
       <li class="elements__list">
         <figure class="element">
-          <button class="button button-card-delete"></button>
-          <img class="element__image" src="#" alt="Фотография" />
+          <button class="button button-card-delete">
+            <div class="sr-only">Удалить</div>
+          </button>
+          <img class="element__image" src="#" alt="Фотография">
           <figcaption class="element__caption">
             <p class="title element__title"></p>
             <button class="button button-like">

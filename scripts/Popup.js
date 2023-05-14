@@ -1,4 +1,4 @@
-export class Popup {
+class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
     this._popupList = document.querySelectorAll(popupSelector);
@@ -30,7 +30,6 @@ export class Popup {
 
   setEventListeners() {
     this._popup.addEventListener('mousedown', this._handleMouseClose);
-    // this._btnOpen.addEventListener('click', this.open);
     this._btnClose.addEventListener('click', this.close);
   }
 }
@@ -39,7 +38,9 @@ export class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
   }
+
   open = (name, link) => {
+    // super.open();
     this._popup.classList.add('popup_opened');
     document.addEventListener('keydown', this._handleEscClose);
 
@@ -53,17 +54,45 @@ export class PopupWithImage extends Popup {
 }
 
 export class PopupWithForm extends Popup {
-  constructor(popupSelector, buttonSubmit) {
+  constructor(popupSelector, handleFormSubmit, handleFormOpen) {
     super(popupSelector);
-    this._buttonSubmit = buttonSubmit;
+    this._handleFormSubmit = handleFormSubmit;
+    this._handleFormOpen = handleFormOpen;
   }
 
   _getInputValues = () => {
     const inputList = this._popup.querySelectorAll('.form__input');
+    this._inputValue = {};
+    inputList.forEach(input => (this._inputValue[input.name] = input.value));
+    console.log(this._inputValue);
+    return this._inputValue;
   };
 
-  //     Содержит приватный метод _getInputValues, который собирает данные всех полей формы.
-  // Перезаписывает родительский метод setEventListeners.
-  // Метод setEventListeners класса PopupWithForm должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.
-  // Перезаписывает родительский метод close, так как при закрытии попапа форма должна ещё и сбрасываться.
+  //   _handleFormSubmit = () => {};
+
+  open = () => {
+    this._popup.classList.add('popup_opened');
+    document.addEventListener('keydown', this._handleEscClose);
+    this._handleFormOpen();
+  };
+
+  close = () => {
+    this._popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', this._handleEscClose);
+
+    const form = this._popup.querySelector('.form');
+
+    form.reset();
+  };
+
+  setEventListeners() {
+    this._popup.addEventListener('mousedown', this._handleMouseClose);
+    this._btnOpen.addEventListener('click', this.open);
+    this._btnClose.addEventListener('click', this.close);
+    this._popup.addEventListener('submit', event => {
+      event.preventDefault();
+      this._handleFormSubmit(this._getInputValues());
+      this.close();
+    });
+  }
 }
