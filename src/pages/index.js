@@ -1,4 +1,5 @@
 //Импорты
+import './index.css';
 import {
   popupEditElement,
   inputNameEditPopup,
@@ -7,13 +8,14 @@ import {
   cardsContainer,
   initialCard,
   config
-} from './constants.js';
-import { Card } from './Card.js';
-import { initialCards } from './cards.js';
-import { FormValidator } from './FormValidator.js';
-import { Section } from './Section.js';
-import { PopupWithImage, PopupWithForm } from './Popup.js';
-import { UserInfo } from './UserInfo.js';
+} from '../components/constants.js';
+import { Card } from '../components/Card.js';
+import { initialCards } from '../components/cards.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { Section } from '../components/Section.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { UserInfo } from '../components/UserInfo.js';
 
 // Отрисовка карт в разметке
 const cardSection = new Section(

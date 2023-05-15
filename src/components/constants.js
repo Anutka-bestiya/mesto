@@ -1,7 +1,7 @@
 //Попап Редактировать профиль
 export const popupEditElement = document.querySelector('.edit-popup');
-export const inputNameEditPopup = formEditPopup.querySelector('.form-user-name');
-export const inputAboutEditPopup = formEditPopup.querySelector('.form-user-about');
+export const inputNameEditPopup = popupEditElement.querySelector('.form-user-name');
+export const inputAboutEditPopup = popupEditElement.querySelector('.form-user-about');
 
 //Попап Добавить Карт
 export const popupAddCartElement = document.querySelector('.add-card-popup');
