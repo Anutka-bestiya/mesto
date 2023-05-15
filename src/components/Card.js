@@ -1,15 +1,15 @@
 //Класс кард
 export class Card {
-  constructor(data, handleCardClick, cardTemplateSelector) {
+  constructor(data, handleCardClick, cardTemplate) {
     this._link = data.link;
     this._name = data.name;
-    this._cardTemplateSelector = cardTemplateSelector;
+    this._cardTemplate = cardTemplate;
     this._handleCardClick = handleCardClick;
     this._card = undefined;
   }
 
   _getTemplate = () => {
-    return this._cardTemplateSelector.cloneNode(true);
+    return this._cardTemplate.cloneNode(true);
   };
 
   _handleDeleteElementClick = () => {
