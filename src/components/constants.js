@@ -1,17 +1,12 @@
 //Попап Редактировать профиль
 export const popupEditElement = document.querySelector('.edit-popup');
 export const buttonEditProfileOpen = document.querySelector('.profile__edit-button');
-export const buttonEditProfileClose = document.querySelector('.edit-popup__close-button');
 export const inputNameEditPopup = popupEditElement.querySelector('.form-user-name');
 export const inputAboutEditPopup = popupEditElement.querySelector('.form-user-about');
 
 //Попап Добавить Карт
 export const popupAddCartElement = document.querySelector('.add-card-popup');
 export const buttonAddCartOpen = document.querySelector('.profile__add-button');
-export const buttonAddCartClose = document.querySelector('.add-card-popup__close-button');
-
-//Попап BigImage
-export const buttonCloseBigImage = document.querySelector('.image-popup__close-button');
 
 // Card
 export const cardsContainer = document.querySelector('.elements');

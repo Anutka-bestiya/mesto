@@ -3,13 +3,10 @@ import './index.css';
 import {
   popupEditElement,
   buttonEditProfileOpen,
-  buttonEditProfileClose,
   inputNameEditPopup,
   inputAboutEditPopup,
   popupAddCartElement,
   buttonAddCartOpen,
-  buttonAddCartClose,
-  buttonCloseBigImage,
   cardsContainer,
   initialCard,
   config
@@ -60,12 +57,10 @@ const userInfo = new UserInfo('.user-name', '.user-about');
 // Попапы
 const popupBigImage = new PopupWithImage('.image-popup');
 popupBigImage.setEventListeners();
-buttonCloseBigImage.addEventListener('click', () => popupBigImage.close());
 
 const popupEdit = new PopupWithForm('.edit-popup', handleEditFormSubmit, handleEditFormOpen);
 popupEdit.setEventListeners();
 buttonEditProfileOpen.addEventListener('click', () => popupEdit.open());
-buttonEditProfileClose.addEventListener('click', () => popupEdit.close());
 
 function handleEditFormSubmit(data) {
   userInfo.setUserInfo(data);
@@ -87,7 +82,6 @@ const popupAddCart = new PopupWithForm(
 );
 popupAddCart.setEventListeners();
 buttonAddCartOpen.addEventListener('click', () => popupAddCart.open());
-buttonAddCartClose.addEventListener('click', () => popupAddCart.close());
 
 function handleAddCartFormSubmit(data) {
   const newCard = createCard({ name: data.name, link: data.link });
