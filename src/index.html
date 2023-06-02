@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
   </head>
   <body class="page">
     <header class="header section">
       <a class="link" href="#">
-        <img src="<%=require('./images/logo.svg')%>" alt="Логотип: Место.Россия" class="logo header__logo"
+        <img
+          src="<%=require('./images/logo.svg')%>"
+          alt="Логотип: Место.Россия"
+          class="logo header__logo"
       /></a>
     </header>
     <main>
       <section class="profile section">
-        <img src="<%=require('./images/personal-image.jpg')%>" alt="Фото профиля" class="profile__image">
-        <h1 class="profile__name text user-name">Жак-Ив Кусто</h1>
+        <div class="profile__avatar">
+          <img src="" alt="Фото профиля" class="profile__image" />
+          <button class="profile__edit-image-button">
+            <img
+              src="<%=require('./images/avatar-edit-button.svg')%>"
+              alt="Карандаш Редактировать"
+              class="profile__edit-image"
+            />
+            <div class="sr-only">Редактировать</div>
+          </button>
+        </div>
+        <h1 class="profile__name text user-name"></h1>
         <button class="button-edit button-open button profile__edit-button edit-popup-open">
           <div class="sr-only">Редактировать</div>
         </button>
-        <p class="profile__about text user-about">Исследователь океана</p>
+        <p class="profile__about text user-about"></p>
         <button class="button-add button-open button profile__add-button add-card-popup-open">
           <div class="sr-only">Добавить</div>
         </button>
@@ -31,7 +44,7 @@
           <button class="button-close button edit-popup__close-button">
             <div class="sr-only">Закрыть</div>
           </button>
-          <h2 class="title edit-popup__title">Редактировать профиль</h2>
+          <h2 class="title popup__title">Редактировать профиль</h2>
           <form class="popup__form form form-edit" novalidate>
             <input
               class="popup__input form__input text text_size_small form-user-name"
@@ -41,7 +54,8 @@
               required
               minlength="2"
               maxlength="40"
-              placeholder="Имя">
+              placeholder="Имя"
+            />
             <span class="popup__error popup__error-name"></span>
             <input
               class="popup__input form__input text text_size_small form-user-about"
@@ -51,12 +65,41 @@
               required
               minlength="2"
               maxlength="200"
-              placeholder="О себе">
+              placeholder="О себе"
+            />
             <span class="popup__error popup__error-about"></span>
             <button
-              class="popup__button button form-edit__button form-edit__text-button text"
+              class="popup__button button form-edit__button text-button text"
               type="submit"
-              value="Отправить форму сейчас">
+              value="Отправить форму сейчас"
+            >
+              Сохранить
+              <div class="sr-only">Сохранить</div>
+            </button>
+          </form>
+        </div>
+      </section>
+      <section class="popup avatar-edit-popup">
+        <div class="popup__container popup__inactiv-close">
+          <button class="button-close button avatar-edit-popup__close-button">
+            <div class="sr-only">Закрыть</div>
+          </button>
+          <h2 class="title popup__title">Обновить аватар</h2>
+          <form class="popup__form form form-avatar" novalidate>
+            <input
+              class="popup__input form__input text text_size_small form-avatar"
+              type="url"
+              name="avatar"
+              value=""
+              required
+              placeholder="https://site.com"
+            />
+            <span class="popup__error popup__error-avatar"></span>
+            <button
+              class="popup__button button avatar-edit-popup__button form-avatar__button text-button text"
+              type="submit"
+              value="Отправить форму сейчас"
+            >
               Сохранить
               <div class="sr-only">Сохранить</div>
             </button>
@@ -68,7 +111,7 @@
           <button class="button-close button add-card-popup__close-button">
             <div class="sr-only">Закрыть</div>
           </button>
-          <h2 class="title add-card-popup__title">Новое место</h2>
+          <h2 class="title popup__title">Новое место</h2>
           <form class="popup__form form add-card" novalidate>
             <input
               class="popup__input form__input text text_size_small add-card__text form-add-card-name"
@@ -78,7 +121,8 @@
               required
               minlength="2"
               maxlength="30"
-              placeholder="Название">
+              placeholder="Название"
+            />
             <span class="popup__error popup__error-name"></span>
             <input
               class="popup__input form__input text text_size_small add-card__text form-add-card-link"
@@ -86,17 +130,35 @@
               name="link"
               value=""
               required
-              placeholder="https://site.com">
+              placeholder="https://site.com"
+            />
             <span class="popup__error popup__error-link"></span>
             <button
-              class="popup__button button add-card__button add-card__text-button text"
+              class="popup__button button add-card__button text-button text"
               type="submit"
               value="Отправить форму сейчас"
-              disabled>
+              disabled
+            >
               Создать
               <div class="sr-only">Создать</div>
             </button>
           </form>
+        </div>
+      </section>
+      <section class="popup confirm-popup">
+        <div class="popup__container confirm-popup__container popup__inactiv-close">
+          <button class="button-close button confirm-popup__close-button">
+            <div class="sr-only">Закрыть</div>
+          </button>
+          <h2 class="title popup__title confirm-popup__title">Вы уверены?</h2>
+          <button
+            class="popup__button button text-button confirm-popup__button text"
+            type="submit"
+            value="Отправить форму сейчас"
+          >
+            Да
+            <div class="sr-only">Подтвердить</div>
+          </button>
         </div>
       </section>
       <section class="popup image-popup" aria-label="Фото из галереи">
@@ -104,7 +166,7 @@
           <button class="button-close button image-popup__close-button">
             <div class="sr-only">Закрыть</div>
           </button>
-          <img class="image-popup__image" src="#" alt="Фотография">
+          <img class="image-popup__image" src="#" alt="Фотография" />
           <figcaption class="image-popup__element">
             <p class="image-popup__title"></p>
           </figcaption>
@@ -120,12 +182,15 @@
           <button class="button button-card-delete">
             <div class="sr-only">Удалить</div>
           </button>
-          <img class="element__image" src="#" alt="Фотография">
+          <img class="element__image" src="#" alt="Фотография" />
           <figcaption class="element__caption">
             <p class="title element__title"></p>
-            <button class="button button-like">
-              <div class="sr-only">Поставить лайк</div>
-            </button>
+            <div class="element__like">
+              <button class="button button-like">
+                <div class="sr-only">Поставить лайк</div>
+              </button>
+              <p class="text element__like-count">n/a</p>
+            </div>
           </figcaption>
         </figure>
       </li>

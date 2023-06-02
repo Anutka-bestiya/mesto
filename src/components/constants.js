@@ -1,3 +1,8 @@
+//Профиль
+export const profileImage = document.querySelector('.profile__image');
+export const profileName = document.querySelector('.profile__name');
+export const profileAbout = document.querySelector('.profile__about');
+
 //Попап Редактировать профиль
 export const popupEditElement = document.querySelector('.edit-popup');
 export const buttonEditProfileOpen = document.querySelector('.profile__edit-button');
