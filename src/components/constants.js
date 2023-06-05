@@ -1,8 +1,3 @@
-//Профиль
-export const profileImage = document.querySelector('.profile__image');
-export const profileName = document.querySelector('.profile__name');
-export const profileAbout = document.querySelector('.profile__about');
-
 //Попап Редактировать профиль
 export const popupEditElement = document.querySelector('.edit-popup');
 export const buttonEditProfileOpen = document.querySelector('.profile__edit-button');
@@ -12,6 +7,11 @@ export const inputAboutEditPopup = popupEditElement.querySelector('.form-user-ab
 //Попап Добавить Карт
 export const popupAddCartElement = document.querySelector('.add-card-popup');
 export const buttonAddCartOpen = document.querySelector('.profile__add-button');
+
+//Попап Редактировать Аватар
+export const popupEditAvatarElement = document.querySelector('.avatar-edit-popup');
+export const buttonEditAvatarOpen = document.querySelector('.profile__edit-image-button');
+export const inputAvatarEditPopup = popupEditAvatarElement.querySelector('.form-avatar');
 
 // Card
 export const cardsContainer = document.querySelector('.elements');

@@ -17,7 +17,7 @@
     <main>
       <section class="profile section">
         <div class="profile__avatar">
-          <img src="" alt="Фото профиля" class="profile__image" />
+          <img src="" alt="Фото профиля" class="profile__image user-avatar" />
           <button class="profile__edit-image-button">
             <img
               src="<%=require('./images/avatar-edit-button.svg')%>"
@@ -85,7 +85,7 @@
             <div class="sr-only">Закрыть</div>
           </button>
           <h2 class="title popup__title">Обновить аватар</h2>
-          <form class="popup__form form form-avatar" novalidate>
+          <form class="popup__form form" novalidate>
             <input
               class="popup__input form__input text text_size_small form-avatar"
               type="url"
@@ -151,14 +151,16 @@
             <div class="sr-only">Закрыть</div>
           </button>
           <h2 class="title popup__title confirm-popup__title">Вы уверены?</h2>
-          <button
-            class="popup__button button text-button confirm-popup__button text"
-            type="submit"
-            value="Отправить форму сейчас"
-          >
-            Да
-            <div class="sr-only">Подтвердить</div>
-          </button>
+          <form class="popup__form form">
+            <button
+              class="popup__button button text-button confirm-popup__button text"
+              type="submit"
+              value="Отправить форму сейчас"
+            >
+              Да
+              <div class="sr-only">Подтвердить</div>
+            </button>
+          </form>
         </div>
       </section>
       <section class="popup image-popup" aria-label="Фото из галереи">
