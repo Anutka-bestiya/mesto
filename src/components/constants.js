@@ -11,7 +11,7 @@ export const buttonAddCartOpen = document.querySelector('.profile__add-button');
 //Попап Редактировать Аватар
 export const popupEditAvatarElement = document.querySelector('.avatar-edit-popup');
 export const buttonEditAvatarOpen = document.querySelector('.profile__edit-image-button');
-export const inputAvatarEditPopup = popupEditAvatarElement.querySelector('.form-avatar');
+export const inputAvatarEditPopup = popupEditAvatarElement.querySelector('.form-avatar__input');
 
 // Card
 export const cardsContainer = document.querySelector('.elements');
