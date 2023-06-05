@@ -84,12 +84,10 @@ function createCard(item) {
     openPopupBigImage,
     data => {
       if (card.isLikeAuthor()) {
-        console.log(data._id);
         api.deleteLike(data._id).then(res => {
           card.setLiked(res);
         });
       } else {
-        console.log(data._id);
         api.addLike(data._id).then(res => {
           card.setLiked(res);
         });
@@ -106,32 +104,7 @@ function openPopupBigImage(name, link) {
   popupBigImage.open(name, link);
 }
 
-function liked(card) {
-  if (card.isLikeAuthor()) {
-    api.deleteLike(id).then(res => {
-      card.setLiked(res.likes);
-    });
-  } else {
-    api.addLike(id).then(res => {
-      card.setLiked(res.likes);
-    });
-  }
-}
-
-function likeAdd(id) {
-  console.log(id);
-  api.addLike(id).then(res => {
-    card.setLiked(res.likes);
-  });
-}
-
-function likeDel(id) {
-  console.log(id);
-  api.deleteLike(id);
-}
-
 function openPopupConfirm(id) {
-  console.log(id);
   popupConfirm.open(id);
 }
 
