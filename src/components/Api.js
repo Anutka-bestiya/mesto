@@ -1,12 +1,14 @@
 export class Api {
   constructor(options) {
     // тело конструктора
-    //       baseUrl: 'https://nomoreparties.co/v1/cohort-66',
-    //   headers: { authorization: '8629910e-8349-4959-825d-5e9f5cf99f3f',
+    //   baseUrl: 'https://nomoreparties.co/v1/cohort-66',
+    //   headers: {
+    //     authorization: '8629910e-8349-4959-825d-5e9f5cf99f3f',
     //     'Content-Type': 'application/json'
-    // }
+    //   }
     (this._baseUrl = options.baseUrl), (this._headers = options.headers);
   }
+
   _res(res) {
     if (res.ok) {
       return res.json();
@@ -48,6 +50,7 @@ export class Api {
         console.log(`Ошибка ${err}`); // "Что-то пошло не так: ..."
       });
   }
+
   //запрос карточек
   getInitialCards() {
     return fetch(this._baseUrl + '/cards', {
@@ -70,6 +73,7 @@ export class Api {
         console.log(`Ошибка ${err}`); // "Что-то пошло не так: ..."
       });
   }
+
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
@@ -80,6 +84,7 @@ export class Api {
         console.log(`Ошибка ${err}`); // "Что-то пошло не так: ..."
       });
   }
+
   addLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
@@ -94,6 +99,7 @@ export class Api {
         console.log(`Ошибка ${err}`); // "Что-то пошло не так: ..."
       });
   }
+
   deleteLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'DELETE',

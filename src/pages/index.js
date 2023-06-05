@@ -41,14 +41,11 @@ api
   .then(res => {
     userInfo.setUserInfo(res);
     userInfo.setUserAvatar(res);
-    console.log(res);
     authorId = res._id;
-    console.log(authorId);
   })
   .then(res => {
     api.getInitialCards().then(res => {
       const initialCardsData = res;
-      console.log(initialCardsData);
       initialCardsData.forEach(card => {
         const newCard = createCard({
           name: card.name,
@@ -150,7 +147,6 @@ const popupEditAvatar = new PopupWithForm(
 );
 popupEditAvatar.setEventListeners();
 buttonEditAvatarOpen.addEventListener('click', () => popupEditAvatar.open());
-// popupEditAvatarElement;
 
 async function handleEditAvatarFormSubmit(data) {
   console.log(data);
@@ -174,11 +170,19 @@ const popupAddCart = new PopupWithForm(
 popupAddCart.setEventListeners();
 buttonAddCartOpen.addEventListener('click', () => popupAddCart.open());
 
-async function handleAddCartFormSubmit(data) {
-  await api.saveNewCard(data);
-  const newCard = createCard({ name: data.name, link: data.link });
+function handleAddCartFormSubmit(data) {
+  api.saveNewCard(data).then(res => {
+    const newCard = createCard({
+      name: res.name,
+      link: res.link,
+      likes: res.likes,
+      _id: res._id,
+      owner: res.owner,
+      authorId: authorId
+    });
 
-  cardSection.addItem(newCard);
+    cardSection.addItem(newCard);
+  });
 }
 
 function handleAddCartFormOpen() {

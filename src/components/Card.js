@@ -5,7 +5,7 @@ export class Card {
     this._name = data.name;
     this._likes = data.likes;
     this._id = data._id;
-    this._ownerId = data.owner._id;
+    this._ownerId = data.owner;
     this._authorId = data.authorId;
     this._data = data;
     this._cardTemplate = cardTemplate;
@@ -55,7 +55,7 @@ export class Card {
       this._handleCardClick(this._name, this._link);
     });
 
-    if (this._ownerId === this._authorId) {
+    if (this._ownerId._id === this._authorId) {
       this._deleteCardButton.addEventListener('click', () => {
         this._handleDeleteElementClick(this._id);
         this._handleDeleteCard();
