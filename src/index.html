@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
   </head>
   <body class="page">
@@ -11,19 +11,18 @@
         <img
           src="<%=require('./images/logo.svg')%>"
           alt="Логотип: Место.Россия"
-          class="logo header__logo"
-      /></a>
+          class="logo header__logo">
+      </a>
     </header>
     <main>
       <section class="profile section">
         <div class="profile__avatar">
-          <img src="" alt="Фото профиля" class="profile__image user-avatar" />
+          <img src="<%=require('https://i.postimg.cc/yNp3rmnn/DSC02921.jpg')%>" alt="Фото профиля" class="profile__image user-avatar">
           <button class="profile__edit-image-button">
             <img
               src="<%=require('./images/avatar-edit-button.svg')%>"
               alt="Карандаш Редактировать"
-              class="profile__edit-image"
-            />
+              class="profile__edit-image">
             <div class="sr-only">Редактировать</div>
           </button>
         </div>
@@ -54,8 +53,7 @@
               required
               minlength="2"
               maxlength="40"
-              placeholder="Имя"
-            />
+              placeholder="Имя">
             <span class="popup__error popup__error-name"></span>
             <input
               class="popup__input form__input text text_size_small form-user-about"
@@ -65,14 +63,12 @@
               required
               minlength="2"
               maxlength="200"
-              placeholder="О себе"
-            />
+              placeholder="О себе">
             <span class="popup__error popup__error-about"></span>
             <button
               class="popup__button button form-edit__button text-button text"
               type="submit"
-              value="Отправить форму сейчас"
-            >
+              value="Отправить форму сейчас">
               Сохранить
               <div class="sr-only">Сохранить</div>
             </button>
@@ -92,14 +88,12 @@
               name="avatar"
               value=""
               required
-              placeholder="https://site.com"
-            />
+              placeholder="https://site.com">
             <span class="popup__error popup__error-avatar"></span>
             <button
               class="popup__button button avatar-edit-popup__button form-avatar__button text-button text"
               type="submit"
-              value="Отправить форму сейчас"
-            >
+              value="Отправить форму сейчас">
               Сохранить
               <div class="sr-only">Сохранить</div>
             </button>
@@ -121,8 +115,7 @@
               required
               minlength="2"
               maxlength="30"
-              placeholder="Название"
-            />
+              placeholder="Название">
             <span class="popup__error popup__error-name"></span>
             <input
               class="popup__input form__input text text_size_small add-card__text form-add-card-link"
@@ -130,15 +123,13 @@
               name="link"
               value=""
               required
-              placeholder="https://site.com"
-            />
+              placeholder="https://site.com">
             <span class="popup__error popup__error-link"></span>
             <button
               class="popup__button button add-card__button text-button text"
               type="submit"
               value="Отправить форму сейчас"
-              disabled
-            >
+              disabled>
               Создать
               <div class="sr-only">Создать</div>
             </button>
@@ -155,8 +146,7 @@
             <button
               class="popup__button button text-button confirm-popup__button text"
               type="submit"
-              value="Отправить форму сейчас"
-            >
+              value="Отправить форму сейчас"></button>
               Да
               <div class="sr-only">Подтвердить</div>
             </button>
