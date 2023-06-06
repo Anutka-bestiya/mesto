@@ -20,11 +20,7 @@ export class Api {
   getUserInfoServe() {
     return fetch(this._baseUrl + '/users/me', {
       headers: { authorization: this._headers.authorization }
-    })
-      .then(res => this._res(res))
-      .catch(err => {
-        console.log(`Ошибка ${err}`); // "Что-то пошло не так: ..."
-      });
+    }).then(res => this._res(res));
   }
 
   setUserInfoServe({ name, about }) {
@@ -32,11 +28,7 @@ export class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({ name, about })
-    })
-      .then(res => this._res(res))
-      .catch(err => {
-        console.log(`Ошибка ${err}`); // "Что-то пошло не так: ..."
-      });
+    }).then(res => this._res(res));
   }
 
   setUserAvatarServe({ avatar }) {
@@ -44,22 +36,14 @@ export class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({ avatar })
-    })
-      .then(res => this._res(res))
-      .catch(err => {
-        console.log(`Ошибка ${err}`); // "Что-то пошло не так: ..."
-      });
+    }).then(res => this._res(res));
   }
 
   //запрос карточек
   getInitialCards() {
     return fetch(this._baseUrl + '/cards', {
       headers: { authorization: this._headers.authorization }
-    })
-      .then(res => this._res(res))
-      .catch(err => {
-        console.log(`Ошибка ${err}`); // "Что-то пошло не так: ..."
-      });
+    }).then(res => this._res(res));
   }
 
   saveNewCard({ name, link }) {
@@ -67,51 +51,27 @@ export class Api {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({ name, link })
-    })
-      .then(res => this._res(res))
-      .catch(err => {
-        console.log(`Ошибка ${err}`); // "Что-то пошло не так: ..."
-      });
+    }).then(res => this._res(res));
   }
 
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
       headers: this._headers
-    })
-      .then(res => this._res(res))
-      .catch(err => {
-        console.log(`Ошибка ${err}`); // "Что-то пошло не так: ..."
-      });
+    }).then(res => this._res(res));
   }
 
   addLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
       headers: this._headers
-    })
-      .then(res => this._res(res))
-      .then(data => {
-        console.log(data);
-        return data;
-      })
-      .catch(err => {
-        console.log(`Ошибка ${err}`); // "Что-то пошло не так: ..."
-      });
+    }).then(res => this._res(res));
   }
 
   deleteLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'DELETE',
       headers: this._headers
-    })
-      .then(res => this._res(res))
-      .then(data => {
-        console.log(data);
-        return data;
-      })
-      .catch(err => {
-        console.log(`Ошибка ${err}`); // "Что-то пошло не так: ..."
-      });
+    }).then(res => this._res(res));
   }
 }
