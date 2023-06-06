@@ -7,11 +7,10 @@ export class PopupWithConfirm extends Popup {
     this._saveBatton = this._popup.querySelector('.popup__button');
   }
 
-  open(id, card) {
+  open(id, func) {
     super.open();
-    console.log(card);
     this._id = id;
-    this._card = card;
+    this._func = func;
   }
 
   changeConfirmBatton(text) {
@@ -22,8 +21,7 @@ export class PopupWithConfirm extends Popup {
     super.setEventListeners();
     this._popup.addEventListener('submit', event => {
       event.preventDefault();
-      console.log(this._card);
-      this._handleFormSubmit(this._id, this._card);
+      this._handleFormSubmit(this._id, this._func);
     });
   }
 }

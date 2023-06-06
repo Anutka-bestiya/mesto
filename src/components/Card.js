@@ -19,9 +19,7 @@ export class Card {
     return this._cardTemplate.cloneNode(true);
   };
 
-  handleDeleteCard = card => {
-    console.log(card);
-    this._card = card;
+  handleDeleteCard = () => {
     this._card.remove();
     this._card = null;
   };
@@ -58,7 +56,7 @@ export class Card {
 
     if (this._ownerId._id === this._authorId) {
       this._deleteCardButton.addEventListener('click', () => {
-        this._handleDeleteElementClick(this._id, this._card);
+        this._handleDeleteElementClick(this._id);
         // this._handleDeleteCard();
       });
     } else {

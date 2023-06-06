@@ -49,6 +49,12 @@ Promise.all([
     userInfo.setUserAvatar(res);
     authorId = res._id;
 
+    // Отрисовка карт в разметке
+    const cardSection = new Section(
+      { items: [], renderer: item => cardSection.addItem(createCard(item)) },
+      cardsContainer
+    );
+
     const initialCardsData = data;
 
     initialCardsData.forEach(card => {
@@ -67,6 +73,7 @@ Promise.all([
     //попадаем сюда когда оба промиса будут выполнены
     //у нас есть все нужные данные, отрисовываем страницу
 
+    // Попапы
     // Попап редактировать профиль
     const popupEdit = new PopupWithForm('.edit-popup', handleEditFormSubmit, handleEditFormOpen);
     popupEdit.setEventListeners();
@@ -156,37 +163,14 @@ Promise.all([
         .finally(() => {
           popupAddCart.changeSaveBatton('Создать'); // Здесь изменяем текст кнопки
         });
-
-      // Попап подтверждение удаления карточки
-      const popupConfirm = new PopupWithConfirm('.confirm-popup', handleConfirmSubmit);
-      popupConfirm.setEventListeners();
-
-      function handleConfirmSubmit(id, card) {
-        popupConfirm.changeConfirmBatton('Удаление...');
-        api
-          .deleteCard(id)
-          .then(() => {
-            api.getInitialCards();
-            card.handleDeleteCard(card);
-            popupConfirm.close();
-          })
-          .catch(err => console.log(`Ошибка удаления Card: ${err}`))
-          .finally(() => {
-            popupConfirm.changeConfirmBatton('Да'); // Здесь изменяем текст кнопки
-          });
-      }
-
-      // Попап открыть изображение
-      const popupBigImage = new PopupWithImage('.image-popup');
-      popupBigImage.setEventListeners();
     }
   })
-  // .then(([res, data]) => {})
   .catch(([err, errCard]) => {
     //попадаем сюда если один из промисов завершаться ошибкой
     console.log(`Ошибка получения UserInfo: ${err}`);
     console.log(`Ошибка получения массива Cards: ${errCard}`);
-  });
+  })
+  .finally(() => {});
 
 //Валидация форм
 const formEditValidation = new FormValidator(config, popupEditElement);
@@ -197,17 +181,6 @@ formEditAvatarValidation.enableValidation();
 
 const formAddCartValidation = new FormValidator(config, popupAddCartElement);
 formAddCartValidation.enableValidation();
-
-// Отрисовка карт в разметке
-const cardSection = new Section(
-  {
-    items: [],
-    renderer: item => {
-      cardSection.addItem(createCard(item));
-    }
-  },
-  cardsContainer
-);
 
 //Функция создания карт из массива
 function createCard(item) {
@@ -227,7 +200,9 @@ function createCard(item) {
           .catch(err => console.log(`Ошибка постановки лайка: ${err}`));
       }
     },
-    openPopupConfirm,
+    id => {
+      popupConfirm.open(id, () => card.handleDeleteCard());
+    },
     initialCard
   );
 
@@ -242,8 +217,28 @@ function openPopupConfirm(id, card) {
   popupConfirm.open(id, card);
 }
 
-// Попапы
-
 function handleAddCartFormOpen() {
   formAddCartValidation.resetError();
+}
+
+// Попап открыть изображение
+const popupBigImage = new PopupWithImage('.image-popup');
+popupBigImage.setEventListeners();
+
+// Попап подтверждение удаления карточки
+const popupConfirm = new PopupWithConfirm('.confirm-popup', handleConfirmSubmit);
+popupConfirm.setEventListeners();
+
+function handleConfirmSubmit(id, newFunc) {
+  popupConfirm.changeConfirmBatton('Удаление...');
+  api
+    .deleteCard(id)
+    .then(() => {
+      newFunc();
+      popupConfirm.close();
+    })
+    .catch(err => console.log(`Ошибка удаления Card: ${err}`))
+    .finally(() => {
+      popupConfirm.changeConfirmBatton('Да'); // Здесь изменяем текст кнопки
+    });
 }
