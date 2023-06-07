@@ -60,7 +60,8 @@ export class Card {
         // this._handleDeleteCard();
       });
     } else {
-      this._deleteCardButton.style.display = 'none';
+      // this._deleteCardButton.style.display = 'none';
+      this._deleteCardButton.remove();
     }
 
     this._likeButton.addEventListener('click', () => {

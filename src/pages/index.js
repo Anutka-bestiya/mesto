@@ -41,151 +41,40 @@ Promise.all([
   api.getUserInfoServe(),
   api.getInitialCards()
 ])
-  .then(([res, data]) => {
-    // class UserInfo
-    const userInfo = new UserInfo('.user-name', '.user-about', '.user-avatar');
+  .then(([user, cards]) => {
+    userInfo.setUserInfo(user);
+    userInfo.setUserAvatar(user);
+    authorId = user._id;
 
-    userInfo.setUserInfo(res);
-    userInfo.setUserAvatar(res);
-    authorId = res._id;
+    const initialCardsData = cards;
 
-    // Отрисовка карт в разметке
-    const cardSection = new Section(
-      { items: [], renderer: item => cardSection.addItem(createCard(item)) },
-      cardsContainer
-    );
-
-    const initialCardsData = data;
-
-    initialCardsData.forEach(card => {
-      const newCard = createCard({
-        name: card.name,
-        link: card.link,
-        likes: card.likes,
-        _id: card._id,
-        owner: card.owner,
-        authorId: authorId
-      });
-
-      cardSection.addItem(newCard);
-    });
+    cardSection.renderItems(initialCardsData);
 
     //попадаем сюда когда оба промиса будут выполнены
     //у нас есть все нужные данные, отрисовываем страницу
-
-    // Попапы
-    // Попап редактировать профиль
-    const popupEdit = new PopupWithForm('.edit-popup', handleEditFormSubmit, handleEditFormOpen);
-    popupEdit.setEventListeners();
-    buttonEditProfileOpen.addEventListener('click', () => popupEdit.open());
-
-    function handleEditFormSubmit(data) {
-      popupEdit.changeSaveBatton('Сохранение...');
-      api
-        .setUserInfoServe(data)
-        .then(() => {
-          popupEdit.close();
-        })
-        .catch(err => console.log(`Ошибка сохранения UserInfo: ${err}`))
-        .finally(() => {
-          popupEdit.changeSaveBatton('Сохранить'); // Здесь изменяем текст кнопки
-        });
-      userInfo.setUserInfo(data);
-    }
-
-    function handleEditFormOpen() {
-      const inputValueList = userInfo.getUserInfo();
-
-      inputNameEditPopup.value = inputValueList.userName;
-      inputAboutEditPopup.value = inputValueList.userAbout;
-
-      formEditValidation.resetError();
-    }
-
-    // Попап редактировать Аватар
-    const popupEditAvatar = new PopupWithForm(
-      '.avatar-edit-popup',
-      handleEditAvatarFormSubmit,
-      handleEditAvatarFormOpen
-    );
-    popupEditAvatar.setEventListeners();
-    buttonEditAvatarOpen.addEventListener('click', () => popupEditAvatar.open());
-
-    function handleEditAvatarFormSubmit(data) {
-      popupEditAvatar.changeSaveBatton('Сохранение...');
-      api
-        .setUserAvatarServe(data)
-        .then(() => {
-          popupEditAvatar.close();
-        })
-        .catch(err => console.log(`Ошибка сохранения аватара: ${err}`))
-        .finally(() => {
-          popupEditAvatar.changeSaveBatton('Сохранить'); // Здесь изменяем текст кнопки
-        });
-      userInfo.setUserAvatar(data);
-    }
-
-    function handleEditAvatarFormOpen() {
-      inputAvatarEditPopup.value = '';
-
-      formEditAvatarValidation.resetError();
-    }
-
-    // Попап добавтить карт
-    const popupAddCart = new PopupWithForm(
-      '.add-card-popup',
-      handleAddCartFormSubmit,
-      handleAddCartFormOpen
-    );
-    popupAddCart.setEventListeners();
-    buttonAddCartOpen.addEventListener('click', () => popupAddCart.open());
-
-    function handleAddCartFormSubmit(data) {
-      popupAddCart.changeSaveBatton('Создание...');
-      api
-        .saveNewCard(data)
-        .then(res => {
-          const newCard = createCard({
-            name: res.name,
-            link: res.link,
-            likes: res.likes,
-            _id: res._id,
-            owner: res.owner,
-            authorId: authorId
-          });
-
-          cardSection.addItem(newCard);
-        })
-        .then(() => {
-          popupAddCart.close();
-        })
-        .catch(err => console.log(`Ошибка создания NewCard: ${err}`))
-        .finally(() => {
-          popupAddCart.changeSaveBatton('Создать'); // Здесь изменяем текст кнопки
-        });
-    }
   })
-  .catch(([err, errCard]) => {
+  .catch(err => {
     //попадаем сюда если один из промисов завершаться ошибкой
-    console.log(`Ошибка получения UserInfo: ${err}`);
-    console.log(`Ошибка получения массива Cards: ${errCard}`);
-  })
-  .finally(() => {});
+    console.log(`Ошибка получения UserInfo, массива Cards: ${err}`);
+  });
 
-//Валидация форм
-const formEditValidation = new FormValidator(config, popupEditElement);
-formEditValidation.enableValidation();
+// class UserInfo
+const userInfo = new UserInfo('.user-name', '.user-about', '.user-avatar');
 
-const formEditAvatarValidation = new FormValidator(config, popupEditAvatarElement);
-formEditAvatarValidation.enableValidation();
-
-const formAddCartValidation = new FormValidator(config, popupAddCartElement);
-formAddCartValidation.enableValidation();
+// Отрисовка карт в разметке
+const cardSection = new Section(item => renderCard(item), cardsContainer);
 
 //Функция создания карт из массива
-function createCard(item) {
+function renderCard(item) {
   const card = new Card(
-    item,
+    {
+      name: item.name,
+      link: item.link,
+      likes: item.likes,
+      _id: item._id,
+      owner: item.owner,
+      authorId: authorId
+    },
     openPopupBigImage,
     data => {
       if (card.isLikeAuthor()) {
@@ -206,19 +95,100 @@ function createCard(item) {
     initialCard
   );
 
-  return card.createCard();
+  cardSection.addItem(card.createCard());
 }
 
-function openPopupBigImage(name, link) {
-  popupBigImage.open(name, link);
+//Валидация форм
+const formEditValidation = new FormValidator(config, popupEditElement);
+formEditValidation.enableValidation();
+
+const formEditAvatarValidation = new FormValidator(config, popupEditAvatarElement);
+formEditAvatarValidation.enableValidation();
+
+const formAddCartValidation = new FormValidator(config, popupAddCartElement);
+formAddCartValidation.enableValidation();
+
+// Попапы
+// Попап редактировать профиль
+const popupEdit = new PopupWithForm('.edit-popup', handleEditFormSubmit, handleEditFormOpen);
+popupEdit.setEventListeners();
+buttonEditProfileOpen.addEventListener('click', () => popupEdit.open());
+
+function handleEditFormSubmit(data) {
+  popupEdit.changeSaveBatton('Сохранение...');
+  api
+    .setUserInfoServe(data)
+    .then(() => {
+      userInfo.setUserInfo(data);
+      popupEdit.close();
+    })
+    .catch(err => console.log(`Ошибка сохранения UserInfo: ${err}`))
+    .finally(() => {
+      popupEdit.changeSaveBatton('Сохранить'); // Здесь изменяем текст кнопки
+    });
 }
 
-function openPopupConfirm(id, card) {
-  popupConfirm.open(id, card);
+function handleEditFormOpen() {
+  const inputValueList = userInfo.getUserInfo();
+
+  inputNameEditPopup.value = inputValueList.userName;
+  inputAboutEditPopup.value = inputValueList.userAbout;
+
+  formEditValidation.resetError();
 }
 
-function handleAddCartFormOpen() {
-  formAddCartValidation.resetError();
+// Попап редактировать Аватар
+const popupEditAvatar = new PopupWithForm(
+  '.avatar-edit-popup',
+  handleEditAvatarFormSubmit,
+  handleEditAvatarFormOpen
+);
+popupEditAvatar.setEventListeners();
+buttonEditAvatarOpen.addEventListener('click', () => popupEditAvatar.open());
+
+function handleEditAvatarFormSubmit(data) {
+  popupEditAvatar.changeSaveBatton('Сохранение...');
+  api
+    .setUserAvatarServe(data)
+    .then(() => {
+      userInfo.setUserAvatar(data);
+      popupEditAvatar.close();
+    })
+    .catch(err => console.log(`Ошибка сохранения аватара: ${err}`))
+    .finally(() => {
+      popupEditAvatar.changeSaveBatton('Сохранить'); // Здесь изменяем текст кнопки
+    });
+}
+
+function handleEditAvatarFormOpen() {
+  inputAvatarEditPopup.value = '';
+
+  formEditAvatarValidation.resetError();
+}
+
+// Попап добавтить карт
+const popupAddCart = new PopupWithForm(
+  '.add-card-popup',
+  handleAddCartFormSubmit,
+  handleAddCartFormOpen
+);
+popupAddCart.setEventListeners();
+buttonAddCartOpen.addEventListener('click', () => popupAddCart.open());
+
+function handleAddCartFormSubmit(data) {
+  popupAddCart.changeSaveBatton('Создание...');
+  api
+    .saveNewCard(data)
+    .then(res => {
+      renderCard(res);
+    })
+    .then(() => {
+      popupAddCart.close();
+    })
+    .catch(err => console.log(`Ошибка создания NewCard: ${err}`))
+    .finally(() => {
+      popupAddCart.changeSaveBatton('Создать'); // Здесь изменяем текст кнопки
+    });
 }
 
 // Попап открыть изображение
@@ -241,4 +211,12 @@ function handleConfirmSubmit(id, newFunc) {
     .finally(() => {
       popupConfirm.changeConfirmBatton('Да'); // Здесь изменяем текст кнопки
     });
+}
+
+function openPopupBigImage(name, link) {
+  popupBigImage.open(name, link);
+}
+
+function handleAddCartFormOpen() {
+  formAddCartValidation.resetError();
 }
